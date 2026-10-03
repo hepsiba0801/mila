@@ -236,23 +236,27 @@ let categoryDescription =
     document.getElementById("category-description");
 
 
-if (category) {
+if (categoryTitle && categoryDescription) {
 
-    categoryTitle.textContent =
-        category.toUpperCase();
+    if (category) {
 
-    categoryDescription.textContent =
-        "Explore our " +
-        category.toLowerCase() +
-        " collection.";
+        categoryTitle.textContent =
+            category.toUpperCase();
 
-} else {
+        categoryDescription.textContent =
+            "Explore our " +
+            category.toLowerCase() +
+            " collection.";
 
-    categoryTitle.textContent =
-        "ALL PRODUCTS";
+    } else {
 
-    categoryDescription.textContent =
-        "Discover everything from the Mila collection.";
+        categoryTitle.textContent =
+            "ALL PRODUCTS";
+
+        categoryDescription.textContent =
+            "Discover everything from the Mila collection.";
+
+    }
 
 }
 
@@ -332,9 +336,11 @@ filteredProducts.forEach(function (product) {
     `;
 
 
-    // Add product card to page
+    // Add product card to page when the container exists
 
-    productContainer.appendChild(productCard);
+    if (productContainer) {
+        productContainer.appendChild(productCard);
+    }
 
 
     // =====================================================

@@ -1,5 +1,5 @@
 /* ==========================================
-   BASIC RESET
+   RESET
 ========================================== */
 
 * {
@@ -8,17 +8,18 @@
     box-sizing: border-box;
 }
 
-
+html,
 body {
-
-    font-family: Arial, sans-serif;
-
-    background-color: #f8f5f0;
-
-    color: #211c1d;
-
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f5f0;
+    color: #211c1d;
+}
 
 
 /* ==========================================
@@ -26,75 +27,56 @@ body {
 ========================================== */
 
 .mila-navbar {
-
     height: 85px;
-
     background-color: #f8f5f0;
-
     border-bottom: 1px solid #e5e0d9;
 
-    position: sticky;
-
+    position: fixed;
     top: 0;
+    left: 0;
 
+    width: 100%;
     z-index: 1000;
-
 }
 
-
 .mila-navbar .container-fluid {
+    height: 100%;
 
     padding-left: 40px;
-
     padding-right: 40px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
 }
 
 
-
 /* ==========================================
-   LOGO
+   MILA LOGO
 ========================================== */
 
 .mila-logo {
-
     text-decoration: none;
-
     color: #8bbbc9;
 
     font-size: 42px;
-
     font-weight: bold;
 
     letter-spacing: -3px;
-
 }
-
 
 
 /* ==========================================
-   NAV LINKS
+   NAVIGATION LINKS
 ========================================== */
 
 .nav-links {
-
     display: flex;
-
     align-items: center;
-
     gap: 40px;
-
 }
 
-
 .nav-links a {
-
     text-decoration: none;
 
     color: #333;
@@ -106,16 +88,11 @@ body {
     letter-spacing: 1.5px;
 
     transition: 0.3s ease;
-
 }
-
 
 .nav-links a:hover {
-
     color: #8dbbc7;
-
 }
-
 
 
 /* ==========================================
@@ -123,11 +100,9 @@ body {
 ========================================== */
 
 .cart-link {
-
     position: relative;
 
     display: flex;
-
     align-items: center;
 
     gap: 8px;
@@ -141,45 +116,36 @@ body {
     text-transform: uppercase;
 
     letter-spacing: 1px;
-
 }
 
+.cart-link:hover {
+    color: #8dbbc7;
+}
 
 .cart-icon {
-
     font-size: 20px;
-
 }
 
-
 .cart-count {
-
     position: absolute;
 
     top: -12px;
-
     right: -15px;
 
     width: 18px;
-
     height: 18px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     border-radius: 50%;
 
     background-color: #8dbbc7;
-
-    color: white;
+    color: #ffffff;
 
     font-size: 10px;
-
 }
-
 
 
 /* ==========================================
@@ -187,13 +153,12 @@ body {
 ========================================== */
 
 .product-page {
+    min-height: 100vh;
 
-    width: 100%;
+    padding-top: 85px;
 
-    padding: 70px 8%;
-
+    background-color: #f8f5f0;
 }
-
 
 
 /* ==========================================
@@ -201,19 +166,19 @@ body {
 ========================================== */
 
 .product-details {
+    width: 100%;
 
-    display: grid;
+    min-height: calc(100vh - 85px);
 
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    align-items: center;
+
+    padding: 70px 8%;
 
     gap: 80px;
 
-    max-width: 1200px;
-
-    margin: auto;
-
+    background-color: #f8f5f0;
 }
-
 
 
 /* ==========================================
@@ -221,34 +186,23 @@ body {
 ========================================== */
 
 .product-detail-image {
-
-    width: 100%;
+    width: 50%;
 
     height: 600px;
 
-    background-color: #ffffff;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
     overflow: hidden;
 
+    background-color: #ffffff;
 }
-
 
 .product-detail-image img {
-
     width: 100%;
-
     height: 100%;
 
-    object-fit: contain;
+    object-fit: cover;
 
+    display: block;
 }
-
 
 
 /* ==========================================
@@ -256,80 +210,103 @@ body {
 ========================================== */
 
 .product-detail-info {
+    width: 50%;
 
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
+    padding: 20px 40px;
 }
 
 
-.product-category {
+/* ==========================================
+   CATEGORY
+========================================== */
 
-    font-size: 12px;
+.product-category {
+    font-size: 13px;
 
     text-transform: uppercase;
 
     letter-spacing: 3px;
 
-    color: #888;
+    color: #8bbbc9;
 
-    margin-bottom: 15px;
-
+    margin-bottom: 18px;
 }
 
 
-.product-detail-info h1 {
+/* ==========================================
+   PRODUCT NAME
+========================================== */
 
-    font-size: 42px;
+.product-detail-info h1 {
+    font-size: 48px;
+
+    line-height: 1.1;
+
+    letter-spacing: -1.5px;
 
     font-weight: 500;
 
-    line-height: 1.15;
+    color: #211c1d;
 
     margin-bottom: 20px;
-
 }
 
+
+/* ==========================================
+   PRODUCT PRICE
+========================================== */
 
 .product-price {
+    font-size: 22px;
 
-    font-size: 25px;
+    font-weight: 500;
 
-    font-weight: 600;
+    color: #211c1d;
 
     margin-bottom: 25px;
-
 }
 
 
-.product-line {
+/* ==========================================
+   LINE
+========================================== */
 
+.product-line {
     width: 100%;
 
     height: 1px;
 
-    background-color: #ddd;
+    background-color: #ddd6ce;
 
     margin-bottom: 30px;
-
 }
 
 
-.product-detail-info h3 {
+/* ==========================================
+   DESCRIPTION TITLE
+========================================== */
 
-    font-size: 18px;
+.product-detail-info h3 {
+    font-size: 15px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
 
     font-weight: 500;
 
-    margin-bottom: 12px;
+    color: #211c1d;
 
+    margin-bottom: 15px;
 }
 
 
+/* ==========================================
+   DESCRIPTION
+========================================== */
+
 .product-description {
+    max-width: 520px;
 
     font-size: 16px;
 
@@ -337,153 +314,191 @@ body {
 
     color: #666;
 
-    max-width: 500px;
-
+    margin-bottom: 0;
 }
-
 
 
 /* ==========================================
-   QUANTITY
+   QUANTITY SECTION
 ========================================== */
 
 .quantity-section {
-
-    margin-top: 30px;
-
+    margin-top: 35px;
 }
 
-
-.quantity-section p {
-
-    font-size: 14px;
-
+.quantity-section > p {
     margin-bottom: 10px;
 
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+    color: #333;
 }
 
 
-.quantity-control {
+/* ==========================================
+   QUANTITY CONTROL
+========================================== */
 
+.quantity-control {
     display: flex;
 
     align-items: center;
 
-    width: 130px;
+    width: fit-content;
 
-    border: 1px solid #ccc;
+    border: 1px solid #ddd6ce;
 
+    background-color: #ffffff;
 }
 
 
+/* Minus / Plus buttons */
+
 .quantity-control button {
-
-    width: 40px;
-
-    height: 40px;
+    width: 45px;
+    height: 42px;
 
     border: none;
 
-    background: white;
+    background-color: #ffffff;
+
+    color: #211c1d;
 
     font-size: 20px;
 
     cursor: pointer;
 
+    transition: background-color 0.2s ease;
 }
 
+.quantity-control button:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* Quantity number */
 
 .quantity-control span {
-
     width: 50px;
+    height: 42px;
 
-    text-align: center;
+    display: flex;
 
+    align-items: center;
+    justify-content: center;
+
+    border-left: 1px solid #ddd6ce;
+    border-right: 1px solid #ddd6ce;
+
+    font-size: 14px;
+
+    color: #211c1d;
 }
-
 
 
 /* ==========================================
    ADD TO CART
 ========================================== */
 
-.add-cart-main {
-
-    margin-top: 30px;
-
+.add-to-cart-btn {
     width: 100%;
 
-    max-width: 500px;
+    padding: 16px 25px;
 
-    padding: 16px;
+    margin-top: 25px;
 
     border: none;
 
     background-color: #211c1d;
 
-    color: white;
+    color: #ffffff;
 
-    font-size: 15px;
+    font-size: 13px;
 
-    letter-spacing: 1px;
+    font-weight: 500;
+
+    letter-spacing: 1.5px;
 
     cursor: pointer;
 
-    transition: 0.3s ease;
-
+    transition: all 0.3s ease;
 }
 
-
-.add-cart-main:hover {
-
-    background-color: #8b5f63;
+.add-to-cart-btn:hover {
+    background-color: #8bbbc9;
 
     transform: translateY(-2px);
-
 }
-
 
 
 /* ==========================================
-   RESPONSIVE
+   MOBILE
 ========================================== */
 
-@media (max-width: 768px) {
-
-    .nav-links {
-
-        display: none;
-
-    }
-
-
-    .product-page {
-
-        padding: 40px 20px;
-
-    }
-
+@media (max-width: 900px) {
 
     .product-details {
+        flex-direction: column;
 
-        grid-template-columns: 1fr;
+        padding: 40px 30px;
 
         gap: 40px;
-
     }
-
 
     .product-detail-image {
+        width: 100%;
 
-        height: 450px;
-
+        height: 500px;
     }
 
+    .product-detail-info {
+        width: 100%;
+
+        padding: 20px 0;
+    }
 
     .product-detail-info h1 {
+        font-size: 40px;
+    }
+}
 
-        font-size: 32px;
 
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .mila-navbar .container-fluid {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
+    .mila-logo {
+        font-size: 35px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .product-page {
+        padding-top: 75px;
+    }
+
+    .product-details {
+        padding: 30px 20px;
+    }
+
+    .product-detail-image {
+        height: 400px;
+    }
+
+    .product-detail-info h1 {
+        font-size: 34px;
+    }
 }
