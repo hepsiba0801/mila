@@ -1,0 +1,1398 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================================================
+   SPLASH SCREEN
+========================================================= */
+
+#splash-screen {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background-color: #8bbbc9;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+}
+
+#logo {
+    width: 500px;
+    max-width: 80%;
+}
+
+#logo.logo-zoom {
+    transform: scale(1);
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.mila-navbar {
+    height: 85px;
+
+    background-color: #f8f5f0;
+
+    border-bottom: 1px solid #e5e0d9;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.8s ease;
+}
+
+.mila-navbar.show-navbar {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mila-navbar .container-fluid {
+    height: 100%;
+
+    padding-left: 40px;
+    padding-right: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* =========================================================
+   MILA LOGO
+========================================================= */
+
+.mila-logo {
+    text-decoration: none;
+
+    color: #8bbbc9;
+
+    font-size: 42px;
+    font-weight: bold;
+
+    letter-spacing: -3px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+
+    color: #333;
+
+    font-size: 14px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #8dbbc7;
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+.cart-link {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    text-decoration: none;
+
+    color: #222;
+
+    font-size: 14px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.cart-link:hover {
+    color: #8dbbc7;
+}
+
+.cart-icon {
+    font-size: 20px;
+}
+
+.cart-count {
+    position: absolute;
+
+    top: -12px;
+    right: -15px;
+
+    width: 18px;
+    height: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: #8dbbc7;
+
+    color: #e6eee5;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   HOME - HERO
+========================================================= */
+
+.hero-section {
+    width: 100%;
+
+    min-height: 580px;
+
+    display: flex;
+
+    background-color: #f4eeee;
+}
+
+.hero-content {
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-left: 8%;
+}
+
+.hero-small-title {
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    font-weight: 500;
+
+    margin-bottom: 20px;
+
+    color: #555;
+}
+
+.hero-content h1 {
+    font-size: 60px;
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    font-weight: 600;
+
+    color: #211c1d;
+
+    margin-bottom: 25px;
+}
+
+.hero-description {
+    font-size: 17px;
+
+    line-height: 1.6;
+
+    color: #555;
+
+    max-width: 400px;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================================
+   SHOP BUTTON
+========================================================= */
+
+.shop-btn {
+    width: 160px;
+
+    padding: 14px 25px;
+
+    border: none;
+
+    background-color: #211c1d;
+
+    color: white;
+
+    font-size: 13px;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.shop-btn:hover {
+    background-color: #8b5f63;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
+.hero-image {
+    width: 50%;
+
+    height: 580px;
+
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    display: block;
+}
+
+
+/* =========================================================
+   HOME - CATEGORIES
+========================================================= */
+
+.categories-section {
+    padding: 50px 6% 70px;
+
+    background-color: #ffffff;
+}
+
+.categories-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+}
+
+.categories-header h2 {
+    margin: 0;
+
+    font-size: 28px;
+
+    font-weight: 500;
+
+    color: #211c1d;
+}
+
+.view-all {
+    text-decoration: none;
+
+    color: #211c1d;
+
+    font-size: 14px;
+
+    transition: color 0.3s ease;
+}
+
+.view-all:hover {
+    color: #8dbbc7;
+}
+
+
+/* =========================================================
+   CATEGORY GRID
+========================================================= */
+
+.categories-container {
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 16px;
+}
+
+.category-card {
+    cursor: pointer;
+
+    overflow: hidden;
+}
+
+.category-card img {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.4s ease;
+}
+
+.category-card:hover img {
+    transform: scale(1.05);
+}
+
+.category-card p {
+    margin-top: 10px;
+
+    margin-bottom: 0;
+
+    font-size: 14px;
+
+    color: #211c1d;
+}
+
+
+/* =========================================================
+   ABOUT PAGE
+========================================================= */
+
+.about-page {
+    padding-top: 85px;
+
+    background-color: #f8f5f0;
+}
+
+
+/* =========================================================
+   ABOUT HERO
+========================================================= */
+
+.about-hero {
+    width: 100%;
+
+    min-height: 580px;
+
+    display: flex;
+
+    background-color: #f8f5f0;
+}
+
+.about-content {
+    width: 50%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 80px 8%;
+}
+
+.about-small-title {
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    font-weight: 500;
+
+    color: #555;
+
+    margin-bottom: 20px;
+}
+
+.about-content h1 {
+    font-size: 64px;
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    font-weight: 500;
+
+    color: #211c1d;
+
+    margin-bottom: 30px;
+}
+
+.about-content > p:last-child {
+    max-width: 480px;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    color: #555;
+}
+
+
+/* =========================================================
+   FOUNDER IMAGE
+========================================================= */
+
+.about-image {
+    width: 50%;
+
+    height: 750px;
+
+    overflow: hidden;
+}
+
+.about-image img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    display: block;
+}
+
+
+/* =========================================================
+   OUR STORY
+========================================================= */
+
+.about-story-section {
+    padding: 120px 15%;
+
+    background-color: #ffffff;
+}
+
+.about-story-content {
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.about-story-content h2 {
+    font-size: 48px;
+
+    line-height: 1.1;
+
+    font-weight: 500;
+
+    letter-spacing: -1px;
+
+    color: #211c1d;
+
+    margin-bottom: 35px;
+}
+
+.about-story-content p:not(.about-small-title) {
+    max-width: 750px;
+
+    margin: 0 auto 20px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: #555;
+}
+
+
+/* =========================================================
+   FROM THE FOUNDER
+========================================================= */
+
+.founder-message-section {
+    padding: 120px 20%;
+
+    background-color: #f8f5f0;
+
+    text-align: center;
+}
+
+.founder-message {
+    max-width: 800px;
+
+    margin: 0 auto;
+}
+
+.founder-message h2 {
+    font-size: 42px;
+
+    line-height: 1.15;
+
+    font-weight: 500;
+
+    letter-spacing: -1px;
+
+    color: #211c1d;
+
+    margin-bottom: 35px;
+}
+
+.founder-message p:not(.about-small-title):not(.founder-name) {
+    max-width: 650px;
+
+    margin: 0 auto 20px;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: #555;
+}
+
+.founder-name {
+    margin-top: 30px;
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+
+    color: #211c1d;
+}
+
+
+/* =========================================================
+   WHAT MILA STANDS FOR
+========================================================= */
+
+.mila-values-section {
+    padding: 110px 8%;
+
+    background-color: #ffffff;
+}
+
+.values-header {
+    margin-bottom: 60px;
+}
+
+.values-header h2 {
+    font-size: 48px;
+
+    line-height: 1.1;
+
+    font-weight: 500;
+
+    letter-spacing: -1px;
+
+    color: #211c1d;
+}
+
+.mila-values-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    border-top: 1px solid #ddd6ce;
+}
+
+.mila-value {
+    min-height: 250px;
+
+    padding: 40px 35px;
+
+    border-right: 1px solid #ddd6ce;
+}
+
+.mila-value:last-child {
+    border-right: none;
+}
+
+.mila-value span {
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    color: #8bbbc9;
+}
+
+.mila-value h3 {
+    font-size: 25px;
+
+    font-weight: 500;
+
+    color: #211c1d;
+
+    margin: 25px 0 15px;
+}
+
+.mila-value p {
+    max-width: 300px;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color: #666;
+}
+
+
+/* =========================================================
+   OUR COLLECTION
+========================================================= */
+
+.collection-section {
+    padding: 110px 8%;
+
+    background-color: #f8f5f0;
+}
+
+.collection-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    margin-bottom: 60px;
+}
+
+.collection-header h2 {
+    font-size: 48px;
+
+    line-height: 1.1;
+
+    font-weight: 500;
+
+    letter-spacing: -1px;
+
+    color: #211c1d;
+
+    margin: 0;
+}
+
+.collection-list {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    border-top: 1px solid #dcd5cd;
+}
+
+.collection-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 30px 10px;
+
+    border-bottom: 1px solid #dcd5cd;
+}
+
+.collection-item span {
+    font-size: 12px;
+
+    color: #8bbbc9;
+
+    letter-spacing: 1px;
+}
+
+.collection-item h3 {
+    margin: 0;
+
+    font-size: 22px;
+
+    font-weight: 400;
+
+    color: #211c1d;
+}
+
+
+/* =========================================================
+   ABOUT CLOSING SECTION
+========================================================= */
+
+.about-closing {
+    padding: 130px 30px;
+
+    text-align: center;
+
+    background-color: #8bbbc9;
+}
+
+.about-closing .about-small-title {
+    color: #ffffff;
+}
+
+.about-closing h2 {
+    font-size: 60px;
+
+    line-height: 1.05;
+
+    font-weight: 500;
+
+    letter-spacing: -2px;
+
+    color: #ffffff;
+
+    margin-bottom: 40px;
+}
+
+.about-shop-btn {
+    display: inline-block;
+
+    padding: 15px 28px;
+
+    background-color: #211c1d;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    letter-spacing: 1.5px;
+
+    transition: transform 0.3s ease;
+}
+
+.about-shop-btn:hover {
+    color: #ffffff;
+
+    transform: translateY(-3px);
+}
+
+/* =========================================================
+   CONTACT PAGE
+========================================================= */
+
+.contact-page {
+    padding-top: 85px;
+
+    min-height: 100vh;
+
+    background-color: #8bbbc9;
+}
+
+
+/* =========================================================
+   CONTACT SECTION
+========================================================= */
+
+.contact-section {
+    min-height: calc(100vh - 85px);
+
+    padding: 80px 8%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 100px;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   LEFT SIDE
+========================================================= */
+
+.contact-intro {
+    color: #211c1d;
+}
+
+
+.contact-small-title {
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    font-weight: 500;
+
+    color: #315866;
+
+    margin-bottom: 20px;
+}
+
+
+.contact-intro h1 {
+    font-size: 72px;
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+
+    font-weight: 500;
+
+    color: #211c1d;
+
+    margin-bottom: 30px;
+}
+
+
+.contact-description {
+    max-width: 480px;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    color: #31505a;
+
+    margin-bottom: 55px;
+}
+
+
+/* =========================================================
+   CONTACT DETAILS
+========================================================= */
+
+.contact-details {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 35px 50px;
+
+    max-width: 600px;
+}
+
+
+.contact-detail {
+    min-height: 75px;
+}
+
+
+.contact-detail-label {
+    display: block;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #315866;
+
+    margin-bottom: 10px;
+}
+
+
+.contact-detail a {
+    color: #211c1d;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    transition: opacity 0.3s ease;
+}
+
+
+.contact-detail a:hover {
+    opacity: 0.6;
+}
+
+
+.contact-detail p {
+    margin: 0;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    color: #211c1d;
+}
+
+
+/* =========================================================
+   CONTACT FORM CARD
+========================================================= */
+
+.contact-form-card {
+    background-color: #f8f5f0;
+
+    padding: 50px;
+
+    max-width: 560px;
+
+    width: 100%;
+
+    box-shadow: 0 20px 50px rgba(33, 28, 29, 0.08);
+}
+
+
+.form-small-title {
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #666;
+
+    margin-bottom: 15px;
+}
+
+
+.contact-form-card h2 {
+    font-size: 38px;
+
+    line-height: 1.1;
+
+    font-weight: 500;
+
+    letter-spacing: -1px;
+
+    color: #211c1d;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.contact-form-group {
+    margin-bottom: 22px;
+}
+
+
+.contact-form-group label {
+    display: block;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    color: #333;
+
+    margin-bottom: 8px;
+}
+
+
+.contact-form-group input,
+.contact-form-group textarea {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #ddd6ce;
+
+    background-color: #ffffff;
+
+    color: #211c1d;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: border-color 0.3s ease;
+}
+
+
+.contact-form-group input {
+    height: 48px;
+}
+
+
+.contact-form-group textarea {
+    resize: vertical;
+
+    min-height: 120px;
+}
+
+
+.contact-form-group input:focus,
+.contact-form-group textarea:focus {
+    border-color: #8bbbc9;
+}
+
+
+.contact-form-group input::placeholder,
+.contact-form-group textarea::placeholder {
+    color: #999;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.contact-submit-btn {
+    width: 100%;
+
+    padding: 15px 25px;
+
+    border: none;
+
+    background-color: #211c1d;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+
+.contact-submit-btn:hover {
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   CONTACT MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .contact-section {
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+
+        padding: 70px 30px;
+    }
+
+
+    .contact-intro h1 {
+        font-size: 58px;
+    }
+
+
+    .contact-form-card {
+        max-width: 100%;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .contact-page {
+        padding-top: 85px;
+    }
+
+
+    .contact-section {
+        padding: 60px 20px;
+    }
+
+
+    .contact-intro h1 {
+        font-size: 48px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .contact-description {
+        font-size: 16px;
+
+        margin-bottom: 40px;
+    }
+
+
+    .contact-details {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+
+    .contact-form-card {
+        padding: 30px 25px;
+    }
+
+
+    .contact-form-card h2 {
+        font-size: 32px;
+    }
+
+}
+
+
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .categories-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .about-content h1 {
+        font-size: 52px;
+    }
+
+    .about-story-section {
+        padding: 100px 10%;
+    }
+
+    .founder-message-section {
+        padding: 100px 12%;
+    }
+
+    .collection-header h2 {
+        font-size: 40px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* -------------------------
+       NAVBAR
+    ------------------------- */
+
+    .nav-links {
+        display: none;
+    }
+
+    .mila-navbar .container-fluid {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .mila-logo {
+        font-size: 35px;
+    }
+
+
+    /* -------------------------
+       HOME HERO
+    ------------------------- */
+
+    .hero-section {
+        flex-direction: column;
+    }
+
+    .hero-content {
+        width: 100%;
+
+        padding: 60px 30px;
+    }
+
+    .hero-content h1 {
+        font-size: 45px;
+    }
+
+    .hero-image {
+        width: 100%;
+
+        height: 500px;
+    }
+
+
+    /* -------------------------
+       ABOUT HERO
+    ------------------------- */
+
+    .about-hero {
+        flex-direction: column;
+    }
+
+    .about-content {
+        width: 100%;
+
+        padding: 70px 30px;
+    }
+
+    .about-content h1 {
+        font-size: 45px;
+    }
+
+    .about-image {
+        width: 100%;
+
+        height: 500px;
+    }
+
+
+    /* -------------------------
+       ABOUT STORY
+    ------------------------- */
+
+    .about-story-section {
+        padding: 80px 30px;
+    }
+
+    .about-story-content h2 {
+        font-size: 36px;
+    }
+
+
+    /* -------------------------
+       FOUNDER MESSAGE
+    ------------------------- */
+
+    .founder-message-section {
+        padding: 80px 30px;
+    }
+
+    .founder-message h2 {
+        font-size: 34px;
+    }
+
+
+    /* -------------------------
+       VALUES
+    ------------------------- */
+
+    .mila-values-section {
+        padding: 80px 30px;
+    }
+
+    .values-header h2 {
+        font-size: 36px;
+    }
+
+    .mila-values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mila-value {
+        min-height: auto;
+
+        padding: 35px 20px;
+
+        border-right: none;
+
+        border-bottom: 1px solid #ddd6ce;
+    }
+
+    .mila-value:last-child {
+        border-bottom: none;
+    }
+
+
+    /* -------------------------
+       COLLECTION
+    ------------------------- */
+
+    .collection-section {
+        padding: 80px 30px;
+    }
+
+    .collection-header {
+        display: block;
+
+        margin-bottom: 40px;
+    }
+
+    .collection-header h2 {
+        font-size: 36px;
+
+        margin-top: 25px;
+    }
+
+    .collection-list {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* -------------------------
+       CONTACT
+    ------------------------- */
+
+    .contact-header {
+        padding: 70px 30px 40px;
+    }
+
+    .contact-header h1 {
+        font-size: 45px;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+        padding: 40px 30px 70px;
+    }
+
+
+    /* -------------------------
+       ABOUT CLOSING
+    ------------------------- */
+
+    .about-closing {
+        padding: 90px 30px;
+    }
+
+    .about-closing h2 {
+        font-size: 45px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .categories-section {
+        padding: 40px 20px;
+    }
+
+    .categories-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

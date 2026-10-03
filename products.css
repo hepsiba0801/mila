@@ -1,0 +1,329 @@
+body {
+
+    margin: 0;
+
+    background-color: #f8f5f0;
+
+    font-family: Arial, sans-serif;
+
+}
+
+
+/* ================= NAVBAR ================= */
+
+.mila-navbar {
+
+    height: 85px;
+
+    background-color: #f8f5f0;
+
+    border-bottom: 1px solid #e5e0d9;
+
+}
+
+
+.mila-navbar .container-fluid {
+
+    padding-left: 40px;
+    padding-right: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.mila-logo {
+
+    text-decoration: none;
+
+    color: #8bbbc9;
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    letter-spacing: -3px;
+
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    gap: 40px;
+
+}
+
+
+.nav-links a {
+
+    text-decoration: none;
+
+    color: #333;
+
+    font-size: 14px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.cart-link {
+
+    text-decoration: none;
+
+    color: #222;
+
+    display: flex;
+
+    gap: 8px;
+
+    align-items: center;
+
+}
+
+
+/* ================= PRODUCTS ================= */
+
+.products-page {
+
+    padding: 70px 7%;
+
+}
+
+
+.products-header {
+
+    text-align: center;
+
+    margin-bottom: 60px;
+
+}
+
+
+.products-small-title {
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    color: #777;
+
+}
+
+
+.products-header h1 {
+
+    font-size: 50px;
+
+    margin: 15px 0;
+
+    text-transform: uppercase;
+
+}
+
+
+.products-header p {
+
+    color: #666;
+
+}
+/* ==========================================
+   PRODUCT GRID
+========================================== */
+
+#product-container {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+
+    margin-top: 40px;
+
+}
+
+
+/* ==========================================
+   PRODUCT CARD
+========================================== */
+
+.product-card {
+
+    background-color: #ffffff;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+
+}
+
+
+.product-card:hover {
+
+    transform: translateY(-5px);
+
+}
+
+
+/* ==========================================
+   PRODUCT IMAGE
+========================================== */
+
+.product-image {
+
+    width: 100%;
+
+    height: 400px;
+
+    background-color: #f5f1f1;
+
+    overflow: hidden;
+
+}
+
+
+.product-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    transition: transform 0.4s ease;
+
+}
+
+
+.product-card:hover .product-image img {
+
+    transform: scale(1.05);
+
+}
+
+
+/* ==========================================
+   PRODUCT INFORMATION
+========================================== */
+
+.product-info {
+
+    padding: 18px 5px;
+
+}
+
+
+.product-category {
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    color: #888;
+
+    margin-bottom: 8px;
+
+}
+
+
+.product-info h3 {
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+    margin: 0 0 10px 0;
+
+    color: #211c1d;
+
+}
+
+
+.product-price {
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    margin-bottom: 15px;
+
+    color: #211c1d;
+
+}
+
+
+/* ==========================================
+   ADD TO CART
+========================================== */
+
+.add-cart-btn {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #211c1d;
+
+    background-color: #ffffff;
+
+    color: #211c1d;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+}
+
+
+.add-cart-btn:hover {
+
+    background-color: #211c1d;
+
+    color: #ffffff;
+
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 900px) {
+
+    #product-container {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    #product-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
