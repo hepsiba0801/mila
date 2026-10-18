@@ -20,7 +20,7 @@
 
     <!-- ================= CART CSS ================= -->
 
-    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="../css/cart.css">
 
 </head>
 
@@ -30,58 +30,45 @@
 
     <!-- ================= NAVBAR ================= -->
 
-    <nav class="navbar mila-navbar">
+    <nav class="navbar mila-navbar show-navbar">
 
         <div class="container-fluid">
-
-
-            <!-- LOGO -->
 
             <a href="index.html" class="mila-logo">
                 mila
             </a>
 
-
-            <!-- NAV LINKS -->
-
             <div class="nav-links">
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="products.html">
-                    Shop
-                </a>
-
-                <a href="about.html">
-                    About
-                </a>
-
-                <a href="contact.html">
-                    Contact
-                </a>
-
+                <a href="index.html">Home</a>
+                <a href="products.html">Shop</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
             </div>
 
+            <div class="nav-actions">
+                <a
+                    href="signin.html"
+                    class="account-link"
+                    aria-label="My Account"
+                    title="My Account">
+                    <img
+                        src="../images/avatar.png"
+                        alt=""
+                        class="navbar-icon">
+                </a>
 
-            <!-- CART -->
-
-            <a href="cart.html" class="cart-link">
-
-                <span class="cart-icon">
-                    🛍
-                </span>
-
-                <span>
-                    Cart
-                </span>
-
-                <span class="cart-count">
-                    0
-                </span>
-
-            </a>
+                <a
+                    href="cart.html"
+                    class="cart-link"
+                    aria-label="Shopping Cart">
+                    <img
+                        src="../images/shopping.png"
+                        alt=""
+                        class="navbar-icon">
+                    <span>Cart</span>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
 
         </div>
 
@@ -210,7 +197,7 @@
 
     <!-- ================= CART JAVASCRIPT ================= -->
 
-    <script src="cart.js"></script>
+    <script src="../js/cart.js"></script>
 
 </body>
 

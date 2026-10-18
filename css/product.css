@@ -122,6 +122,64 @@ body {
     color: #8dbbc7;
 }
 
+.nav-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    flex-shrink: 0;
+}
+
+.account-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 32px;
+
+    height: 32px;
+
+    flex-shrink: 0;
+
+    text-decoration: none;
+
+    color: #222;
+
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.account-link:hover {
+    transform: translateY(-1px);
+
+    opacity: 0.75;
+}
+
+.navbar-icon {
+    display: block;
+
+    width: 21px;
+
+    height: 21px;
+
+    object-fit: contain;
+}
+
+.nav-actions .cart-link {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+}
+
 .cart-icon {
     font-size: 20px;
 }

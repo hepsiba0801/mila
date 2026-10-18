@@ -19,10 +19,21 @@ body {
 
     border-bottom: 1px solid #e5e0d9;
 
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
 }
 
 
 .mila-navbar .container-fluid {
+
+    height: 100%;
 
     padding-left: 40px;
     padding-right: 40px;
@@ -89,12 +100,80 @@ body {
 
 }
 
+.nav-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    flex-shrink: 0;
+
+}
+
+.account-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 32px;
+
+    height: 32px;
+
+    flex-shrink: 0;
+
+    text-decoration: none;
+
+    color: #222;
+
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+}
+
+.account-link:hover {
+
+    transform: translateY(-1px);
+
+    opacity: 0.75;
+
+}
+
+.navbar-icon {
+
+    display: block;
+
+    width: 21px;
+
+    height: 21px;
+
+    object-fit: contain;
+
+}
+
+.nav-actions .cart-link {
+
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+
+}
+
 
 /* ================= PRODUCTS ================= */
 
 .products-page {
 
-    padding: 70px 7%;
+    padding: 155px 7% 70px;
 
 }
 
