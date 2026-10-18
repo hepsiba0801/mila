@@ -2290,4 +2290,204 @@ SMALL MOBILE
         font-size: 12px;
     }
 }
+/* =====================================
+   MILA - CONSISTENT CART NAVIGATION
+===================================== */
 
+.cart-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    text-decoration: none;
+    color: #211c1d;
+
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.cart-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+    line-height: 1;
+}
+
+.cart-label {
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.cart-count {
+    position: absolute;
+    top: -12px;
+    right: -16px;
+
+    min-width: 21px;
+    height: 21px;
+    padding: 0 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background-color: #8bbbc9;
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+
+    box-sizing: border-box;
+}
+
+.cart-link:hover {
+    color: #8bbbc9;
+}
+
+/* =====================================
+   MILA FOOTER
+===================================== */
+
+.mila-footer {
+    width: 100%;
+    background-color: #8bbbc9;
+    color: #211c1d;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 6% 45px;
+
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr 1fr;
+    gap: 40px;
+}
+
+/* Brand */
+
+.footer-brand h2 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -3px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.footer-tagline {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.footer-description {
+    max-width: 300px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #27383c;
+}
+
+/* Headings */
+
+.mila-footer h3 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    margin-bottom: 22px;
+    color: #211c1d;
+}
+
+/* Links */
+
+.footer-links,
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-links a,
+.footer-social a {
+    text-decoration: none;
+    color: #27383c;
+    font-size: 14px;
+    margin-bottom: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+    color: #ffffff;
+}
+
+/* Contact */
+
+.footer-contact p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #27383c;
+    margin-bottom: 12px;
+}
+
+.footer-contact p span {
+    font-weight: 600;
+    color: #211c1d;
+}
+
+.footer-contact a {
+    color: #27383c;
+    text-decoration: none;
+}
+
+.footer-contact a:hover {
+    color: #ffffff;
+}
+
+/* Bottom Bar */
+
+.footer-bottom {
+    border-top: 1px solid rgba(33, 28, 29, 0.2);
+    padding: 20px 6%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    color: #27383c;
+    margin: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 992px) {
+    .footer-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 35px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        padding: 40px 25px 30px;
+        gap: 30px;
+    }
+
+    .footer-brand h2 {
+        font-size: 36px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 25px;
+    }
+}

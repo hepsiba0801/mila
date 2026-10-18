@@ -11,13 +11,11 @@
 
 <body>
 
+    <!-- NAVBAR -->
     <nav class="navbar mila-navbar show-navbar">
-
         <div class="container-fluid">
 
-            <a href="index.html" class="mila-logo">
-                mila
-            </a>
+            <a href="index.html" class="mila-logo">mila</a>
 
             <div class="nav-links">
                 <a href="index.html">Home</a>
@@ -27,40 +25,51 @@
             </div>
 
             <div class="nav-actions">
-                <a
-                    href="signin.html"
-                    class="account-link"
-                    aria-label="My Account"
-                    title="My Account">
+
+                <!-- ACCOUNT -->
+                <a href="signin.html"
+                   class="account-link active"
+                   aria-label="My Account"
+                   title="My Account">
                     <img
                         src="../images/avatar.png"
-                        alt=""
+                        alt="My Account"
                         class="navbar-icon">
                 </a>
 
+                <!-- CART -->
                 <a href="cart.html" class="cart-link">
                     <span class="cart-icon" aria-hidden="true">🛍</span>
                     <span class="cart-label">CART</span>
                     <span class="cart-count">0</span>
                 </a>
+
             </div>
-
         </div>
-
     </nav>
 
+
+    <!-- SIGN IN PAGE -->
     <main class="auth-container">
 
-        <!-- Left Section -->
+        <!-- LEFT IMAGE SECTION -->
         <section class="auth-image">
             <div class="image-content">
                 <p class="eyebrow">YOUR BEAUTY, YOUR RITUAL</p>
-                <h1>Beauty begins<br>with you.</h1>
-                <p>Discover the little things that make you feel beautiful.</p>
+
+                <h1>
+                    Beauty begins<br>
+                    with you.
+                </h1>
+
+                <p>
+                    Discover the little things that make you feel beautiful.
+                </p>
             </div>
         </section>
 
-        <!-- Right Section -->
+
+        <!-- RIGHT FORM SECTION -->
         <section class="auth-form-section">
 
             <div class="auth-form">
@@ -73,8 +82,11 @@
                     Your beauty essentials are waiting for you.
                 </p>
 
+
+                <!-- SIGN IN FORM -->
                 <form id="signinForm">
 
+                    <!-- EMAIL -->
                     <div class="form-group">
                         <label for="email">Email address</label>
 
@@ -84,78 +96,235 @@
                             name="email"
                             placeholder="you@example.com"
                             autocomplete="email"
-                            required
-                        >
+                            required>
                     </div>
 
+
+                    <!-- PASSWORD -->
                     <div class="form-group">
                         <label for="password">Password</label>
 
                         <div class="password-wrapper">
+
                             <input
                                 type="password"
                                 id="password"
                                 name="password"
                                 placeholder="Enter your password"
                                 autocomplete="current-password"
-                                required
-                            >
+                                required>
 
                             <button
                                 type="button"
                                 id="togglePassword"
                                 aria-label="Show password"
-                            >
+                                aria-pressed="false">
                                 Show
                             </button>
+
                         </div>
                     </div>
 
+
+                    <!-- FORM OPTIONS -->
                     <div class="form-options">
 
                         <label class="remember-me">
                             <input
                                 type="checkbox"
                                 id="rememberMe"
-                                name="rememberMe"
-                            >
-                            Remember me
+                                name="rememberMe">
+
+                            <span>Remember me</span>
                         </label>
 
-                        <a href="forgot-password.html">
+                        <a href="#" id="forgotPasswordLink">
                             Forgot password?
                         </a>
 
                     </div>
 
-                    <button type="submit" class="auth-button">
+
+                    <!-- SUBMIT -->
+                    <button type="submit" class="auth-button" id="signinButton">
                         Sign In
                     </button>
 
-                    <p id="signinMessage" role="status" aria-live="polite"></p>
+                    <!-- FEEDBACK MESSAGE -->
+                    <p
+                        id="signinMessage"
+                        class="form-message"
+                        role="status"
+                        aria-live="polite">
+                    </p>
 
                 </form>
 
+
+                <!-- DIVIDER -->
                 <div class="divider">
                     <span>OR</span>
                 </div>
 
+
+                <!-- SIGN UP LINK -->
                 <p class="auth-switch">
                     New to Mila?
                     <a href="signup.html">Create an account</a>
                 </p>
 
+
+                <!-- TERMS -->
                 <p class="terms">
                     By signing in, you agree to our
-                    <a href="#">Terms of Service</a> and
-                    <a href="#">Privacy Policy</a>.
+                    <a href="#" class="policy-link">Terms of Service</a>
+                    and
+                    <a href="#" class="policy-link">Privacy Policy</a>.
                 </p>
 
             </div>
-
         </section>
 
     </main>
+
+
+    <!-- CART COUNT -->
+    <script src="../js/cart-count.js"></script>
+
+
+    <!-- SIGN IN INTERACTIONS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const signinForm = document.getElementById("signinForm");
+            const passwordInput = document.getElementById("password");
+            const togglePassword = document.getElementById("togglePassword");
+            const signinMessage = document.getElementById("signinMessage");
+            const signinButton = document.getElementById("signinButton");
+            const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+
+            // SHOW / HIDE PASSWORD
+            togglePassword.addEventListener("click", function () {
+
+                const isPasswordHidden = passwordInput.type === "password";
+
+                passwordInput.type = isPasswordHidden ? "text" : "password";
+
+                togglePassword.textContent = isPasswordHidden ? "Hide" : "Show";
+
+                togglePassword.setAttribute(
+                    "aria-label",
+                    isPasswordHidden ? "Hide password" : "Show password"
+                );
+
+                togglePassword.setAttribute(
+                    "aria-pressed",
+                    String(isPasswordHidden)
+                );
+            });
+
+
+            // SIGN IN FORM
+            signinForm.addEventListener("submit", async function (event) {
+
+                event.preventDefault();
+
+                signinMessage.textContent = "";
+                signinMessage.className = "form-message";
+
+                const email = document.getElementById("email").value.trim();
+                const password = passwordInput.value;
+
+                if (!email || !password) {
+                    signinMessage.textContent = "Please enter your email and password.";
+                    signinMessage.classList.add("error");
+                    return;
+                }
+
+                signinButton.disabled = true;
+                signinButton.textContent = "Signing in...";
+
+                try {
+
+                    /*
+                     * BACKEND INTEGRATION
+                     *
+                     * Connect your authentication API here when
+                     * the backend is ready.
+                     *
+                     * Example:
+                     *
+                     * const response = await fetch(
+                     *     "http://127.0.0.1:8000/auth/signin",
+                     *     {
+                     *         method: "POST",
+                     *         headers: {
+                     *             "Content-Type": "application/json"
+                     *         },
+                     *         body: JSON.stringify({ email, password })
+                     *     }
+                     * );
+                     *
+                     * const data = await response.json();
+                     *
+                     * if (!response.ok) {
+                     *     throw new Error(data.detail || "Sign in failed.");
+                     * }
+                     *
+                     * Handle the authenticated session securely
+                     * using the backend's chosen authentication method.
+                     */
+
+                    signinMessage.textContent =
+                        "The sign-in service is not connected yet. Please try again when authentication is available.";
+
+                    signinMessage.classList.add("info");
+
+                } catch (error) {
+
+                    signinMessage.textContent =
+                        error.message || "Something went wrong. Please try again.";
+
+                    signinMessage.classList.add("error");
+
+                } finally {
+
+                    signinButton.disabled = false;
+                    signinButton.textContent = "Sign In";
+
+                }
+            });
+
+
+            // FORGOT PASSWORD
+            forgotPasswordLink.addEventListener("click", function (event) {
+
+                event.preventDefault();
+
+                signinMessage.textContent =
+                    "Password recovery will be available soon.";
+
+                signinMessage.className = "form-message info";
+
+            });
+
+
+            // TERMS AND PRIVACY PLACEHOLDERS
+            document.querySelectorAll(".policy-link").forEach(function (link) {
+
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    signinMessage.textContent =
+                        "Our Terms of Service and Privacy Policy will be available soon.";
+
+                    signinMessage.className = "form-message info";
+                });
+
+            });
+
+        });
+    </script>
 
 </body>
 </html>

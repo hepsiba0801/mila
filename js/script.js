@@ -15,13 +15,11 @@ $(document).ready(function () {
     } else {
 
         // First visit
-
         $("#logo").hide();
 
         $("#logo").fadeIn(1000, function () {
             $("#logo").addClass("logo-zoom");
         });
-
 
         setTimeout(function () {
 
@@ -33,10 +31,7 @@ $(document).ready(function () {
             });
 
             // Remember splash
-            sessionStorage.setItem(
-                "milaSplashShown",
-                "true"
-            );
+            sessionStorage.setItem("milaSplashShown", "true");
 
         }, 3500);
     }
@@ -48,10 +43,11 @@ $(document).ready(function () {
 
     $(".category-card").click(function () {
 
-        let category = $(this).data("category");
+        const category = $(this).data("category");
 
+        // Navigate to the category in the Products page
         window.location.href =
-            "products.html?category=" + category;
+            "products.html?category=" + encodeURIComponent(category);
 
     });
 
@@ -62,12 +58,13 @@ $(document).ready(function () {
 
     $(".nav-links a").click(function (event) {
 
-        let linkText = $(this).text().trim();
+        const linkText = $(this).text().trim();
 
         if (linkText === "Shop") {
 
             event.preventDefault();
 
+            // Open the Products page
             window.location.href = "products.html";
 
         }

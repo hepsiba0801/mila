@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,17 +19,16 @@
 
 <body>
 
-
     <!-- ================= NAVBAR ================= -->
 
     <nav class="navbar mila-navbar show-navbar">
 
         <div class="container-fluid">
 
-            <a href="index.html" class="mila-logo">
-                mila
-            </a>
+            <!-- Logo -->
+            <a href="index.html" class="mila-logo">mila</a>
 
+            <!-- Navigation Links -->
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="products.html">Shop</a>
@@ -36,23 +36,30 @@
                 <a href="contact.html">Contact</a>
             </div>
 
+            <!-- Account and Cart -->
             <div class="nav-actions">
+
+                <!-- Sign In -->
                 <a
                     href="signin.html"
                     class="account-link"
                     aria-label="My Account"
-                    title="My Account">
+                    title="My Account"
+                >
                     <img
                         src="../images/avatar.png"
                         alt=""
-                        class="navbar-icon">
+                        class="navbar-icon"
+                    >
                 </a>
 
+                <!-- Shopping Cart -->
                 <a href="cart.html" class="cart-link">
                     <span class="cart-icon" aria-hidden="true">🛍</span>
                     <span class="cart-label">CART</span>
                     <span class="cart-count">0</span>
                 </a>
+
             </div>
 
         </div>
@@ -60,99 +67,77 @@
     </nav>
 
 
-
     <!-- ================= PRODUCT DETAILS ================= -->
 
     <main class="product-page">
 
-
         <div class="product-details">
 
-
-            <!-- PRODUCT IMAGE -->
-
+            <!-- Product Image -->
             <div class="product-detail-image">
-
                 <img
                     id="product-image"
                     src=""
                     alt="Product"
                 >
-
             </div>
 
-
-
-            <!-- PRODUCT INFORMATION -->
-
+            <!-- Product Information -->
             <div class="product-detail-info">
 
+                <!-- Category -->
+                <p id="product-category" class="product-category"></p>
 
-                <p
-                    id="product-category"
-                    class="product-category">
-                </p>
+                <!-- Product Name -->
+                <h1 id="product-name">Product Name</h1>
 
+                <!-- Product Price -->
+                <p id="product-price" class="product-price"></p>
 
-                <h1 id="product-name">
-                    Product Name
-                </h1>
-
-
-                <p
-                    id="product-price"
-                    class="product-price">
-                </p>
-
-
+                <!-- Divider -->
                 <div class="product-line"></div>
 
-
-                <h3>
-                    Description
-                </h3>
-
+                <!-- Description -->
+                <h3>Description</h3>
 
                 <p
                     id="product-description"
-                    class="product-description">
-                </p>
+                    class="product-description"
+                ></p>
 
-
-
-                <!-- QUANTITY -->
-
+                <!-- Quantity -->
                 <div class="quantity-section">
 
-                    <p>
-                        Quantity
-                    </p>
+                    <p>Quantity</p>
 
                     <div class="quantity-control">
 
-                        <button id="decrease-btn">
-                            −
-                        </button>
+                        <button
+                            type="button"
+                            id="decrease-btn"
+                            aria-label="Decrease quantity"
+                        >−</button>
 
-                        <span id="quantity">
-                            1
-                        </span>
+                        <span id="quantity">1</span>
 
-                        <button id="increase-btn">
-                            +
-                        </button>
+                        <button
+                            type="button"
+                            id="increase-btn"
+                            aria-label="Increase quantity"
+                        >+</button>
 
                     </div>
 
                 </div>
 
-
-
-                <!-- ADD TO CART -->
-<button id="add-to-cart-btn" class="add-to-cart-btn">
-    ADD TO CART
-</button>
-
+                <!-- Add to Cart -->
+                <button
+                    type="button"
+                    id="add-to-cart-btn"
+                    class="add-to-cart-btn"
+                >
+                    ADD TO CART
+                </button>
 
             </div>
 
@@ -161,12 +146,16 @@
     </main>
 
 
-
     <!-- ================= JAVASCRIPT ================= -->
 
+    <!-- Product data must load first -->
     <script src="../js/products.js"></script>
+
+    <!-- Product details and quantity functionality -->
     <script src="../js/product.js"></script>
 
+    <!-- Shared cart count -->
+    <script src="../js/cart-count.js"></script>
 
 </body>
 

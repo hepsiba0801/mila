@@ -10,7 +10,9 @@ const productId = urlParams.get("id");
 // FIND PRODUCT
 // ==========================================
 
-const product = products.find(item => item.id === productId);
+const product = products.find(
+    item => String(item.id) === String(productId)
+);
 
 
 // ==========================================
@@ -19,24 +21,64 @@ const product = products.find(item => item.id === productId);
 
 if (product) {
 
-    document.getElementById("product-image").src = product.image;
+    // Product image
+    const productImage = document.getElementById("product-image");
 
+    if (productImage) {
+
+        // Support image paths with or without the images/ prefix
+        const imagePath = product.image || "";
+
+        if (
+            imagePath.startsWith("images/") ||
+            imagePath.startsWith("images\\")
+        ) {
+            productImage.src = "../" + imagePath.replace(/\\/g, "/");
+        } else {
+            productImage.src = imagePath;
+        }
+
+        productImage.alt = product.name;
+
+        // Report image loading errors
+        productImage.onerror = function () {
+            console.error(
+                "Product image could not be loaded:",
+                productImage.src
+            );
+        };
+    }
+
+    // Product name
     document.getElementById("product-name").textContent = product.name;
 
-    document.getElementById("product-category").textContent = product.category;
+    // Product category
+    document.getElementById("product-category").textContent =
+        product.category;
 
+    // Product price
     document.getElementById("product-price").textContent =
         `₹${product.price}`;
 
+    // Product description
     document.getElementById("product-description").textContent =
-        product.description;
+        product.description ||
+        "Discover this beauty essential from Mila.";
 
 } else {
 
-    document.querySelector(".product-details").innerHTML = `
-        <h2>Product Not Found</h2>
-        <a href="products.html">Back to Shop</a>
-    `;
+    // Product not found
+    const productDetails = document.querySelector(".product-details");
+
+    if (productDetails) {
+        productDetails.innerHTML = `
+            <div class="product-not-found">
+                <h2>Product Not Found</h2>
+                <p>Sorry, we couldn't find this product.</p>
+                <a href="products.html">Back to Shop</a>
+            </div>
+        `;
+    }
 }
 
 
@@ -47,35 +89,36 @@ if (product) {
 let quantity = 1;
 
 const quantityDisplay = document.getElementById("quantity");
-
 const decreaseBtn = document.getElementById("decrease-btn");
-
 const increaseBtn = document.getElementById("increase-btn");
 
 
 // DECREASE QUANTITY
 
-decreaseBtn.addEventListener("click", function () {
+if (decreaseBtn && quantityDisplay) {
 
-    if (quantity > 1) {
+    decreaseBtn.addEventListener("click", function () {
 
-        quantity--;
+        if (quantity > 1) {
+            quantity--;
+            quantityDisplay.textContent = quantity;
+        }
 
-        quantityDisplay.textContent = quantity;
-    }
-
-});
+    });
+}
 
 
 // INCREASE QUANTITY
 
-increaseBtn.addEventListener("click", function () {
+if (increaseBtn && quantityDisplay) {
 
-    quantity++;
+    increaseBtn.addEventListener("click", function () {
 
-    quantityDisplay.textContent = quantity;
+        quantity++;
+        quantityDisplay.textContent = quantity;
 
-});
+    });
+}
 
 
 // ==========================================
@@ -88,62 +131,56 @@ if (addToCartBtn && product) {
 
     addToCartBtn.addEventListener("click", function () {
 
-        // Get existing cart
-        let cart =
-            JSON.parse(localStorage.getItem("milaCart")) || [];
+        // Read existing cart
+        let cart;
 
+        try {
+            cart = JSON.parse(localStorage.getItem("milaCart")) || [];
+
+            if (!Array.isArray(cart)) {
+                cart = [];
+            }
+
+        } catch (error) {
+            cart = [];
+        }
 
         // Check if product already exists
-        const existingProduct =
-            cart.find(item => item.id === product.id);
-
+        const existingProduct = cart.find(
+            item => String(item.id) === String(product.id)
+        );
 
         if (existingProduct) {
 
-            // Add selected quantity
-            existingProduct.quantity += quantity;
+            // Increase existing quantity
+            existingProduct.quantity =
+                (Number(existingProduct.quantity) || 0) + quantity;
 
         } else {
 
             // Add new product
             cart.push({
-
                 id: product.id,
-
                 name: product.name,
-
                 category: product.category,
-
                 price: product.price,
-
                 image: product.image,
-
                 quantity: quantity
-
             });
 
         }
 
-
         // Save cart
-        localStorage.setItem(
-            "milaCart",
-            JSON.stringify(cart)
-        );
+        localStorage.setItem("milaCart", JSON.stringify(cart));
 
-
-        // Update navbar cart count
+        // Update cart badge
         updateCartCount();
-
 
         // Button feedback
         addToCartBtn.textContent = "ADDED ✓";
 
-
-        setTimeout(() => {
-
+        setTimeout(function () {
             addToCartBtn.textContent = "ADD TO CART";
-
         }, 1500);
 
     });
@@ -157,24 +194,30 @@ if (addToCartBtn && product) {
 
 function updateCartCount() {
 
-    const cart =
-        JSON.parse(localStorage.getItem("milaCart")) || [];
+    let cart = [];
 
+    try {
+        cart = JSON.parse(localStorage.getItem("milaCart")) || [];
 
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+
+    } catch (error) {
+        cart = [];
+    }
+
+    // Calculate total number of items
     const totalQuantity = cart.reduce(
-        (total, item) => total + item.quantity,
+        (total, item) => total + (Number(item.quantity) || 0),
         0
     );
 
-
-    const cartCount =
-        document.querySelector(".cart-count");
-
+    // Update badge
+    const cartCount = document.querySelector(".cart-count");
 
     if (cartCount) {
-
         cartCount.textContent = totalQuantity;
-
     }
 
 }

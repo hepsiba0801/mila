@@ -10,9 +10,10 @@
     <!-- Bootstrap CSS -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+        rel="stylesheet"
+    >
 
-    <!-- Custom CSS -->
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -24,7 +25,8 @@
         <img
             src="../images/logo.png"
             id="logo"
-            alt="Mila Cosmetics Logo">
+            alt="Mila Cosmetics Logo"
+        >
     </div>
 
 
@@ -32,18 +34,16 @@
 
     <div id="home-page">
 
-        <!-- ================= NAVBAR ================= -->
+        <!-- NAVBAR -->
 
         <nav class="navbar mila-navbar">
 
             <div class="container-fluid">
 
-                <!-- MILA LOGO -->
-                <a href="index.html" class="mila-logo">
-                    mila
-                </a>
+                <!-- Logo -->
+                <a href="index.html" class="mila-logo">mila</a>
 
-                <!-- NAVIGATION LINKS -->
+                <!-- Navigation Links -->
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <a href="products.html">Shop</a>
@@ -51,24 +51,24 @@
                     <a href="contact.html">Contact</a>
                 </div>
 
-                <!-- ACCOUNT AND CART -->
+                <!-- Account and Cart -->
                 <div class="nav-actions">
 
-                    <!-- ACCOUNT ICON -->
+                    <!-- Account -->
                     <a
                         href="signin.html"
                         class="account-link"
                         aria-label="My Account"
-                        title="My Account">
-
+                        title="My Account"
+                    >
                         <img
                             src="../images/avatar.png"
                             alt=""
-                            class="navbar-icon">
-
+                            class="navbar-icon"
+                        >
                     </a>
 
-                    <!-- CART ICON -->
+                    <!-- Cart -->
                     <a href="cart.html" class="cart-link">
                         <span class="cart-icon" aria-hidden="true">🛍</span>
                         <span class="cart-label">CART</span>
@@ -86,12 +86,9 @@
 
         <section class="hero-section">
 
-            <!-- LEFT SIDE: CONTENT -->
             <div class="hero-content">
 
-                <p class="hero-small-title">
-                    MILA COSMETICS
-                </p>
+                <p class="hero-small-title">MILA COSMETICS</p>
 
                 <h1>
                     YOUR BEAUTY,<br>
@@ -99,27 +96,25 @@
                 </h1>
 
                 <p class="hero-description">
-                    Discover makeup made to bring out
-                    your everyday glow.
+                    Discover makeup made to bring out your everyday glow.
                 </p>
 
                 <button
+                    type="button"
                     class="shop-btn"
-                    onclick="window.location.href='products.html'">
-
+                    onclick="window.location.href='products.html'"
+                >
                     SHOP NOW
-
                 </button>
 
             </div>
 
-            <!-- RIGHT SIDE: IMAGE -->
+            <!-- Hero Image -->
             <div class="hero-image">
-
                 <img
                     src="../images/hero.jpeg"
-                    alt="Mila Cosmetics">
-
+                    alt="Mila Cosmetics"
+                >
             </div>
 
         </section>
@@ -131,7 +126,6 @@
 
     <section class="categories-section">
 
-        <!-- CATEGORIES HEADER -->
         <div class="categories-header">
 
             <h2>Top Categories</h2>
@@ -142,61 +136,43 @@
 
         </div>
 
-        <!-- CATEGORIES CONTAINER -->
+
         <div class="categories-container">
 
-            <!-- MAKEUP -->
+            <!-- Makeup -->
             <div class="category-card" data-category="makeup">
-
                 <img src="../images/makeup.jpeg" alt="Makeup">
-
                 <p>Makeup</p>
-
             </div>
 
-            <!-- SKINCARE -->
+            <!-- Skincare -->
             <div class="category-card" data-category="skincare">
-
                 <img src="../images/skincare.jpeg" alt="Skincare">
-
                 <p>Skincare</p>
-
             </div>
 
-            <!-- HAIR -->
+            <!-- Hair Care -->
             <div class="category-card" data-category="hair">
-
                 <img src="../images/hair.jpeg" alt="Hair Care">
-
                 <p>Hair</p>
-
             </div>
 
-            <!-- FRAGRANCE -->
+            <!-- Fragrance -->
             <div class="category-card" data-category="fragrance">
-
                 <img src="../images/perfume.jpeg" alt="Fragrance">
-
                 <p>Fragrance</p>
-
             </div>
 
-            <!-- BODY CARE -->
+            <!-- Body Care -->
             <div class="category-card" data-category="bodycare">
-
                 <img src="../images/bodycare.jpeg" alt="Body Care">
-
                 <p>Body Care</p>
-
             </div>
 
-            <!-- LIPS -->
+            <!-- Lip Products -->
             <div class="category-card" data-category="lips">
-
                 <img src="../images/lips.jpeg" alt="Lip Products">
-
                 <p>Lips</p>
-
             </div>
 
         </div>
@@ -204,21 +180,116 @@
     </section>
 
 
-    <!-- ================= BOOTSTRAP JS ================= -->
+    <!-- ================= FOOTER ================= -->
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-    </script>
+    <footer class="mila-footer">
 
-    <!-- ================= JQUERY ================= -->
+        <div class="footer-container">
 
-    <script
-        src="https://code.jquery.com/jquery-3.7.1.min.js">
-    </script>
+            <!-- Brand -->
+            <div class="footer-brand">
 
-    <!-- ================= CUSTOM JAVASCRIPT ================= -->
+                <h2>mila.</h2>
 
+                <p class="footer-tagline">
+                    Your beauty. Your way.
+                </p>
+
+                <p class="footer-description">
+                    Discover beauty essentials that celebrate your
+                    individuality and everyday glow.
+                </p>
+
+            </div>
+
+
+            <!-- Quick Links -->
+            <div class="footer-links">
+
+                <h3>QUICK LINKS</h3>
+
+                <a href="index.html">Home</a>
+                <a href="products.html">Shop</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+
+            </div>
+
+
+            <!-- Contact Information -->
+            <div class="footer-contact">
+
+                <h3>CONTACT US</h3>
+
+                <p>
+                    <span>Email:</span>
+                    <a href="mailto:hello@mila.com">hello@mila.com</a>
+                </p>
+
+                <p>
+                    <span>Phone:</span>
+                    <a href="tel:+919042839957">+91 90428 39957</a>
+                </p>
+
+                <p>
+                    <span>Location:</span>
+                    Coimbatore, Tamil Nadu, India
+                </p>
+
+            </div>
+
+
+            <!-- Social Links -->
+            <div class="footer-social">
+
+                <h3>FOLLOW US</h3>
+
+                <a
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Instagram
+                </a>
+
+                <a
+                    href="https://www.pinterest.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Pinterest
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+
+            <p>© 2026 Mila. All rights reserved.</p>
+
+            <p>Made with care for your everyday beauty.</p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Home Page Functionality -->
     <script src="../js/script.js"></script>
+
+    <!-- Cart Count -->
+    <script src="../js/cart-count.js"></script>
 
 </body>
 

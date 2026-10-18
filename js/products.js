@@ -2,9 +2,8 @@
 // GET CATEGORY FROM URL
 // =========================================================
 
-let url = new URLSearchParams(window.location.search);
-
-let category = url.get("category");
+const url = new URLSearchParams(window.location.search);
+const category = url.get("category");
 
 
 // =========================================================
@@ -23,8 +22,7 @@ const products = [
         category: "makeup",
         price: 2499,
         image: "images/eyeshadow.jpeg",
-        description:
-            "A versatile nude eyeshadow palette featuring rich matte and shimmer shades for creating everyday and glamorous eye looks."
+        description: "A versatile nude eyeshadow palette featuring rich matte and shimmer shades for creating everyday and glamorous eye looks."
     },
 
     {
@@ -33,8 +31,7 @@ const products = [
         category: "makeup",
         price: 899,
         image: "images/foundation.jpeg",
-        description:
-            "A lightweight hydrating foundation designed to provide smooth, buildable coverage with a natural-looking finish."
+        description: "A lightweight hydrating foundation designed to provide smooth, buildable coverage with a natural-looking finish."
     },
 
     {
@@ -43,8 +40,7 @@ const products = [
         category: "makeup",
         price: 2200,
         image: "images/lipstick.jpeg",
-        description:
-            "A creamy lipstick with rich colour and a comfortable finish, designed to create a smooth and defined lip look."
+        description: "A creamy lipstick with rich colour and a comfortable finish, designed to create a smooth and defined lip look."
     },
 
 
@@ -58,8 +54,7 @@ const products = [
         category: "skincare",
         price: 899,
         image: "images/facewash.jpeg",
-        description:
-            "A gentle cleansing foam formulated with Heartleaf extract to help remove impurities and excess oil while leaving the skin feeling fresh and clean."
+        description: "A gentle cleansing foam formulated with Heartleaf extract to help remove impurities and excess oil while leaving the skin feeling fresh and clean."
     },
 
     {
@@ -68,8 +63,7 @@ const products = [
         category: "skincare",
         price: 1299,
         image: "images/serum.jpeg",
-        description:
-            "A lightweight soothing ampoule formulated with Madagascar Centella to help calm and hydrate the skin while supporting the skin barrier."
+        description: "A lightweight soothing ampoule formulated with Madagascar Centella to help calm and hydrate the skin while supporting the skin barrier."
     },
 
     {
@@ -78,8 +72,7 @@ const products = [
         category: "skincare",
         price: 1599,
         image: "images/sleepingmask.jpeg",
-        description:
-            "An overnight hydrating sleeping mask designed to replenish moisture and leave the skin feeling soft, refreshed and hydrated by morning."
+        description: "An overnight hydrating sleeping mask designed to replenish moisture and leave the skin feeling soft, refreshed and hydrated by morning."
     },
 
 
@@ -93,8 +86,7 @@ const products = [
         category: "hair",
         price: 799,
         image: "images/dryshampoo.jpeg",
-        description:
-            "A refreshing dry shampoo designed to absorb excess oil and leave hair feeling clean, fresh and lightweight between washes."
+        description: "A refreshing dry shampoo designed to absorb excess oil and leave hair feeling clean, fresh and lightweight between washes."
     },
 
     {
@@ -103,8 +95,7 @@ const products = [
         category: "hair",
         price: 999,
         image: "images/hairoil.jpeg",
-        description:
-            "A nourishing hair oil designed to moisturize the scalp and hair while helping improve softness, shine and overall hair health."
+        description: "A nourishing hair oil designed to moisturize the scalp and hair while helping improve softness, shine and overall hair health."
     },
 
     {
@@ -113,8 +104,7 @@ const products = [
         category: "hair",
         price: 899,
         image: "images/curl.jpeg",
-        description:
-            "A curl-defining cream designed to enhance natural curls, reduce frizz and leave hair soft, smooth and defined."
+        description: "A curl-defining cream designed to enhance natural curls, reduce frizz and leave hair soft, smooth and defined."
     },
 
 
@@ -128,8 +118,7 @@ const products = [
         category: "fragrance",
         price: 8999,
         image: "images/ysl.jpeg",
-        description:
-            "A luxurious berry-inspired fragrance with a rich fruity character and an elegant, long-lasting scent."
+        description: "A luxurious berry-inspired fragrance with a rich fruity character and an elegant, long-lasting scent."
     },
 
     {
@@ -138,8 +127,7 @@ const products = [
         category: "fragrance",
         price: 2499,
         image: "images/tukan.jpeg",
-        description:
-            "A warm and sophisticated vanilla fragrance with a smooth and comforting character designed for everyday wear."
+        description: "A warm and sophisticated vanilla fragrance with a smooth and comforting character designed for everyday wear."
     },
 
     {
@@ -148,8 +136,7 @@ const products = [
         category: "fragrance",
         price: 12999,
         image: "images/chanel.jpeg",
-        description:
-            "An elegant fragrance with a refined blend of citrus, floral and warm notes, creating a sophisticated signature scent."
+        description: "An elegant fragrance with a refined blend of citrus, floral and warm notes, creating a sophisticated signature scent."
     },
 
 
@@ -163,8 +150,7 @@ const products = [
         category: "bodycare",
         price: 799,
         image: "images/bodyexfo.jpeg",
-        description:
-            "A coffee-based body exfoliator designed to gently remove dead skin cells and leave the skin feeling smooth, soft and refreshed."
+        description: "A coffee-based body exfoliator designed to gently remove dead skin cells and leave the skin feeling smooth, soft and refreshed."
     },
 
     {
@@ -173,8 +159,7 @@ const products = [
         category: "bodycare",
         price: 699,
         image: "images/coconutwax.jpeg",
-        description:
-            "A rich coconut body butter designed to nourish and moisturize dry skin while leaving it feeling soft and smooth."
+        description: "A rich coconut body butter designed to nourish and moisturize dry skin while leaving it feeling soft and smooth."
     },
 
     {
@@ -183,8 +168,7 @@ const products = [
         category: "bodycare",
         price: 599,
         image: "images/bodywash.jpeg",
-        description:
-            "A refreshing guava-scented foaming body wash designed to gently cleanse the skin while providing a soft and refreshing shower experience."
+        description: "A refreshing guava-scented foaming body wash designed to gently cleanse the skin while providing a soft and refreshing shower experience."
     },
 
 
@@ -198,8 +182,7 @@ const products = [
         category: "lips",
         price: 999,
         image: "images/lipoil.jpeg",
-        description:
-            "A glossy honey-infused lip oil designed to nourish, moisturize and give lips a smooth, hydrated shine."
+        description: "A glossy honey-infused lip oil designed to nourish, moisturize and give lips a smooth, hydrated shine."
     },
 
     {
@@ -208,8 +191,7 @@ const products = [
         category: "lips",
         price: 599,
         image: "images/lipbalm.jpeg",
-        description:
-            "A rich lip butter balm designed to provide lasting moisture and keep lips soft, smooth and comfortable throughout the day."
+        description: "A rich lip butter balm designed to provide lasting moisture and keep lips soft, smooth and comfortable throughout the day."
     },
 
     {
@@ -218,40 +200,58 @@ const products = [
         category: "lips",
         price: 1499,
         image: "images/liptint.jpeg",
-        description:
-            "A hydrating peptide lip tint that combines comfortable moisture with a soft, glossy tint for an effortless everyday lip look."
+        description: "A hydrating peptide lip tint that combines comfortable moisture with a soft, glossy tint for an effortless everyday lip look."
     }
 
 ];
 
 
 // =========================================================
+// FIX IMAGE PATHS
+// =========================================================
+
+function getProductImagePath(image) {
+
+    const normalizedPath = String(image || "").replace(/\\/g, "/");
+
+    // Keep external and data URLs unchanged.
+    if (/^(https?:|data:|blob:)/i.test(normalizedPath)) {
+        return normalizedPath;
+    }
+
+    // Handle paths such as images/eyeshadow.jpeg
+    if (normalizedPath.startsWith("images/")) {
+        return "../" + normalizedPath;
+    }
+
+    // Keep already-correct relative paths unchanged.
+    if (normalizedPath.startsWith("../images/")) {
+        return normalizedPath;
+    }
+
+    return normalizedPath;
+}
+
+
+// =========================================================
 // DISPLAY CATEGORY TITLE
 // =========================================================
 
-let categoryTitle =
-    document.getElementById("category-title");
-
-let categoryDescription =
-    document.getElementById("category-description");
-
+const categoryTitle = document.getElementById("category-title");
+const categoryDescription = document.getElementById("category-description");
 
 if (categoryTitle && categoryDescription) {
 
     if (category) {
 
-        categoryTitle.textContent =
-            category.toUpperCase();
+        categoryTitle.textContent = category.toUpperCase();
 
         categoryDescription.textContent =
-            "Explore our " +
-            category.toLowerCase() +
-            " collection.";
+            "Explore our " + category.toLowerCase() + " collection.";
 
     } else {
 
-        categoryTitle.textContent =
-            "ALL PRODUCTS";
+        categoryTitle.textContent = "ALL PRODUCTS";
 
         categoryDescription.textContent =
             "Discover everything from the Mila collection.";
@@ -266,14 +266,9 @@ if (categoryTitle && categoryDescription) {
 // =========================================================
 
 const filteredProducts = category
-
     ? products.filter(function (product) {
-
-        return product.category ===
-            category.toLowerCase();
-
+        return product.category === category.toLowerCase();
     })
-
     : products;
 
 
@@ -281,128 +276,103 @@ const filteredProducts = category
 // PRODUCT CONTAINER
 // =========================================================
 
-const productContainer =
-    document.getElementById("product-container");
+const productContainer = document.getElementById("product-container");
 
 
 // =========================================================
 // CREATE PRODUCT CARDS
 // =========================================================
 
-filteredProducts.forEach(function (product) {
+if (productContainer) {
 
-    const productCard =
-        document.createElement("div");
+    filteredProducts.forEach(function (product) {
 
-    productCard.classList.add("product-card");
+        const productCard = document.createElement("div");
 
+        productCard.classList.add("product-card");
 
-    productCard.innerHTML = `
+        // Convert image paths to work from the html/ directory.
+        const imagePath = getProductImagePath(product.image);
 
-        <div class="product-image">
+        productCard.innerHTML = `
+            <div class="product-image">
 
-            <img
-                src="${product.image}"
-                alt="${product.name}"
-            >
+                <img
+                    src="${imagePath}"
+                    alt="${product.name}"
+                    loading="lazy"
+                >
 
-        </div>
+            </div>
 
+            <div class="product-info">
 
-        <div class="product-info">
+                <p class="product-category">
+                    ${product.category}
+                </p>
 
-            <p class="product-category">
-                ${product.category}
-            </p>
+                <h3>
+                    ${product.name}
+                </h3>
 
-            <h3>
-                ${product.name}
-            </h3>
+                <p class="product-price">
+                    ₹${product.price}
+                </p>
 
-            <p class="product-price">
-                ₹${product.price}
-            </p>
+                <button
+                    class="add-cart-btn"
+                    data-id="${product.id}">
 
-            <button
-                class="add-cart-btn"
-                data-id="${product.id}">
+                    Add to Cart
 
-                Add to Cart
+                </button>
 
-            </button>
+            </div>
+        `;
 
-        </div>
-
-    `;
-
-
-    // Add product card to page when the container exists
-
-    if (productContainer) {
         productContainer.appendChild(productCard);
-    }
 
 
-    // =====================================================
-    // CLICK PRODUCT CARD
-    // =====================================================
+        // =================================================
+        // CLICK PRODUCT CARD
+        // =================================================
 
-    productCard.addEventListener("click", function (event) {
+        productCard.addEventListener("click", function (event) {
 
-        // Don't open product page
-        // when Add to Cart is clicked
+            // Do not open the details page when Add to Cart
+            // is clicked.
+            if (event.target.closest(".add-cart-btn")) {
+                return;
+            }
 
-        if (
-            event.target.classList.contains("add-cart-btn")
-        ) {
-            return;
-        }
+            // Open the individual product details page.
+            window.location.href =
+                "product.html?id=" + encodeURIComponent(product.id);
 
-
-        // Open individual product page
-
-        window.location.href =
-            "product.html?id=" + product.id;
+        });
 
     });
 
-});
+}
 
 
 // =========================================================
 // ADD TO CART
 // =========================================================
 
-const addCartButtons =
-    document.querySelectorAll(".add-cart-btn");
-
-
-addCartButtons.forEach(function (button) {
+document.querySelectorAll(".add-cart-btn").forEach(function (button) {
 
     button.addEventListener("click", function (event) {
 
-        // Stop the product card click event
-
         event.stopPropagation();
 
+        // Get product ID.
+        const productId = button.dataset.id;
 
-        // Get product ID
-
-        const productId =
-            button.dataset.id;
-
-
-        // Find product
-
-        const product =
-            products.find(function (item) {
-
-                return item.id === productId;
-
-            });
-
-
-        // Safety check
+        // Find the selected product.
+        const product = products.find(function (item) {
+            return item.id === productId;
+        });
 
         if (!product) {
             return;
@@ -413,40 +383,42 @@ addCartButtons.forEach(function (button) {
         // GET EXISTING CART
         // =================================================
 
-        let cart =
-            JSON.parse(
-                localStorage.getItem("milaCart")
-            ) || [];
+        let cart = [];
+
+        try {
+
+            cart = JSON.parse(localStorage.getItem("milaCart")) || [];
+
+            if (!Array.isArray(cart)) {
+                cart = [];
+            }
+
+        } catch (error) {
+
+            cart = [];
+
+        }
 
 
         // =================================================
         // CHECK IF PRODUCT ALREADY EXISTS
         // =================================================
 
-        const existingProduct =
-            cart.find(function (item) {
-
-                return item.id === product.id;
-
-            });
+        const existingProduct = cart.find(function (item) {
+            return item.id === product.id;
+        });
 
 
         // =================================================
-        // IF PRODUCT EXISTS
+        // UPDATE QUANTITY OR ADD PRODUCT
         // =================================================
 
         if (existingProduct) {
 
-            existingProduct.quantity++;
+            existingProduct.quantity =
+                (Number(existingProduct.quantity) || 0) + 1;
 
-        }
-
-
-        // =================================================
-        // IF PRODUCT DOES NOT EXIST
-        // =================================================
-
-        else {
+        } else {
 
             cart.push({
 
@@ -458,7 +430,7 @@ addCartButtons.forEach(function (button) {
 
                 price: product.price,
 
-                image: product.image,
+                image: getProductImagePath(product.image),
 
                 quantity: 1
 
@@ -490,7 +462,6 @@ addCartButtons.forEach(function (button) {
 
         button.textContent = "Added ✓";
 
-
         setTimeout(function () {
 
             button.textContent = "Add to Cart";
@@ -508,27 +479,33 @@ addCartButtons.forEach(function (button) {
 
 function updateCartCount() {
 
-    const cart =
-        JSON.parse(
-            localStorage.getItem("milaCart")
-        ) || [];
+    let cart = [];
+
+    try {
+
+        cart = JSON.parse(localStorage.getItem("milaCart")) || [];
+
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+
+    } catch (error) {
+
+        cart = [];
+
+    }
 
 
-    let totalQuantity = 0;
+    // Calculate total quantity of all products.
+    const totalQuantity = cart.reduce(function (total, item) {
+
+        return total + (Number(item.quantity) || 0);
+
+    }, 0);
 
 
-    cart.forEach(function (item) {
-
-        totalQuantity += item.quantity;
-
-    });
-
-
-    const cartCountElements =
-        document.querySelectorAll(".cart-count");
-
-
-    cartCountElements.forEach(function (element) {
+    // Update every cart-count element on the page.
+    document.querySelectorAll(".cart-count").forEach(function (element) {
 
         element.textContent = totalQuantity;
 
