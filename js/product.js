@@ -1,33 +1,88 @@
 // ==========================================
+// MILA - PRODUCT DETAILS
+// Fetch products from FastAPI
+// ==========================================
+
+const API_BASE_URL = "http://127.0.0.1:8000";
+
+// ==========================================
 // GET PRODUCT ID FROM URL
 // ==========================================
 
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");
 
+let product = null;
+let quantity = 1;
 
 // ==========================================
-// FIND PRODUCT
+// HTML ELEMENTS
 // ==========================================
 
-const product = products.find(
-    item => String(item.id) === String(productId)
-);
+const productImage = document.getElementById("product-image");
+const productName = document.getElementById("product-name");
+const productCategory = document.getElementById("product-category");
+const productPrice = document.getElementById("product-price");
+const productDescription = document.getElementById("product-description");
+
+const quantityDisplay = document.getElementById("quantity");
+const decreaseBtn = document.getElementById("decrease-btn");
+const increaseBtn = document.getElementById("increase-btn");
+const addToCartBtn = document.getElementById("add-to-cart-btn");
 
 
 // ==========================================
-// DISPLAY PRODUCT
+// FETCH PRODUCT FROM FASTAPI
 // ==========================================
 
-if (product) {
+async function loadProduct() {
 
-    // Product image
-    const productImage = document.getElementById("product-image");
+    // Database product IDs are numeric
+    if (!productId || !/^\d+$/.test(productId)) {
+        showProductError(
+            "Invalid product ID. Please open this product from the shop."
+        );
+        return;
+    }
 
-    if (productImage) {
+    try {
 
-        // Support image paths with or without the images/ prefix
-        const imagePath = product.image || "";
+        const response = await fetch(
+            `${API_BASE_URL}/products/${encodeURIComponent(productId)}`
+        );
+
+        if (response.status === 404) {
+            showProductError("Sorry, we couldn't find this product.");
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        // Convert API response into JavaScript data
+        product = await response.json();
+
+        // ==========================================
+        // DISPLAY PRODUCT INFORMATION
+        // ==========================================
+
+        productName.textContent = product.name;
+
+        productCategory.textContent = product.category;
+
+        productPrice.textContent =
+            `₹${Number(product.price).toLocaleString("en-IN")}`;
+
+        productDescription.textContent =
+            product.description ||
+            "Discover this beauty essential from Mila.";
+
+        // ==========================================
+        // PRODUCT IMAGE
+        // ==========================================
+
+        const imagePath = product.image_url || "";
 
         if (
             imagePath.startsWith("images/") ||
@@ -40,41 +95,46 @@ if (product) {
 
         productImage.alt = product.name;
 
-        // Report image loading errors
         productImage.onerror = function () {
             console.error(
                 "Product image could not be loaded:",
                 productImage.src
             );
         };
+
+        // ==========================================
+        // STOCK VALIDATION
+        // ==========================================
+
+        if (Number(product.stock_quantity) <= 0) {
+            addToCartBtn.disabled = true;
+            addToCartBtn.textContent = "OUT OF STOCK";
+        }
+
+    } catch (error) {
+
+        console.error("Error fetching product:", error);
+
+        showProductError(
+            "Unable to load the product. Please check that the Mila API is running."
+        );
     }
+}
 
-    // Product name
-    document.getElementById("product-name").textContent = product.name;
 
-    // Product category
-    document.getElementById("product-category").textContent =
-        product.category;
+// ==========================================
+// PRODUCT NOT FOUND
+// ==========================================
 
-    // Product price
-    document.getElementById("product-price").textContent =
-        `₹${product.price}`;
+function showProductError(message) {
 
-    // Product description
-    document.getElementById("product-description").textContent =
-        product.description ||
-        "Discover this beauty essential from Mila.";
-
-} else {
-
-    // Product not found
     const productDetails = document.querySelector(".product-details");
 
     if (productDetails) {
         productDetails.innerHTML = `
             <div class="product-not-found">
                 <h2>Product Not Found</h2>
-                <p>Sorry, we couldn't find this product.</p>
+                <p>${message}</p>
                 <a href="products.html">Back to Shop</a>
             </div>
         `;
@@ -83,17 +143,8 @@ if (product) {
 
 
 // ==========================================
-// QUANTITY
-// ==========================================
-
-let quantity = 1;
-
-const quantityDisplay = document.getElementById("quantity");
-const decreaseBtn = document.getElementById("decrease-btn");
-const increaseBtn = document.getElementById("increase-btn");
-
-
 // DECREASE QUANTITY
+// ==========================================
 
 if (decreaseBtn && quantityDisplay) {
 
@@ -105,19 +156,29 @@ if (decreaseBtn && quantityDisplay) {
         }
 
     });
+
 }
 
 
+// ==========================================
 // INCREASE QUANTITY
+// ==========================================
 
 if (increaseBtn && quantityDisplay) {
 
     increaseBtn.addEventListener("click", function () {
 
-        quantity++;
-        quantityDisplay.textContent = quantity;
+        if (!product) return;
+
+        const stock = Number(product.stock_quantity);
+
+        if (quantity < stock) {
+            quantity++;
+            quantityDisplay.textContent = quantity;
+        }
 
     });
+
 }
 
 
@@ -125,16 +186,25 @@ if (increaseBtn && quantityDisplay) {
 // ADD TO CART
 // ==========================================
 
-const addToCartBtn = document.getElementById("add-to-cart-btn");
-
-if (addToCartBtn && product) {
+if (addToCartBtn) {
 
     addToCartBtn.addEventListener("click", function () {
 
-        // Read existing cart
-        let cart;
+        // Wait until product data is available
+        if (!product) return;
 
+        const stock = Number(product.stock_quantity);
+
+        if (stock <= 0) {
+            alert("Sorry, this product is out of stock.");
+            return;
+        }
+
+        let cart = [];
+
+        // Read existing cart
         try {
+
             cart = JSON.parse(localStorage.getItem("milaCart")) || [];
 
             if (!Array.isArray(cart)) {
@@ -142,29 +212,38 @@ if (addToCartBtn && product) {
             }
 
         } catch (error) {
+
             cart = [];
+
         }
 
-        // Check if product already exists
+        // Find existing product using database ID
         const existingProduct = cart.find(
-            item => String(item.id) === String(product.id)
+            item => String(item.id) === String(product.product_id)
         );
 
         if (existingProduct) {
 
             // Increase existing quantity
-            existingProduct.quantity =
+            const updatedQuantity =
                 (Number(existingProduct.quantity) || 0) + quantity;
+
+            if (updatedQuantity > stock) {
+                alert("Sorry, there isn't enough stock available.");
+                return;
+            }
+
+            existingProduct.quantity = updatedQuantity;
 
         } else {
 
-            // Add new product
+            // Add new product to cart
             cart.push({
-                id: product.id,
+                id: product.product_id,
                 name: product.name,
                 category: product.category,
-                price: product.price,
-                image: product.image,
+                price: Number(product.price),
+                image: product.image_url,
                 quantity: quantity
             });
 
@@ -173,14 +252,18 @@ if (addToCartBtn && product) {
         // Save cart
         localStorage.setItem("milaCart", JSON.stringify(cart));
 
-        // Update cart badge
-        updateCartCount();
+        // Update navbar cart badge
+        if (typeof updateCartCount === "function") {
+            updateCartCount();
+        }
 
         // Button feedback
         addToCartBtn.textContent = "ADDED ✓";
 
         setTimeout(function () {
+
             addToCartBtn.textContent = "ADD TO CART";
+
         }, 1500);
 
     });
@@ -189,42 +272,16 @@ if (addToCartBtn && product) {
 
 
 // ==========================================
-// UPDATE NAVBAR CART COUNT
+// INITIAL CART COUNT
 // ==========================================
 
-function updateCartCount() {
-
-    let cart = [];
-
-    try {
-        cart = JSON.parse(localStorage.getItem("milaCart")) || [];
-
-        if (!Array.isArray(cart)) {
-            cart = [];
-        }
-
-    } catch (error) {
-        cart = [];
-    }
-
-    // Calculate total number of items
-    const totalQuantity = cart.reduce(
-        (total, item) => total + (Number(item.quantity) || 0),
-        0
-    );
-
-    // Update badge
-    const cartCount = document.querySelector(".cart-count");
-
-    if (cartCount) {
-        cartCount.textContent = totalQuantity;
-    }
-
+if (typeof updateCartCount === "function") {
+    updateCartCount();
 }
 
 
 // ==========================================
-// INITIAL CART COUNT
+// LOAD PRODUCT
 // ==========================================
 
-updateCartCount();
+loadProduct();

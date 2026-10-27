@@ -1,521 +1,265 @@
 // =========================================================
-// GET CATEGORY FROM URL
+// MILA - PRODUCTS CATALOG
+// Dynamic Product Listing & Category Filtering from FastAPI
 // =========================================================
 
-const url = new URLSearchParams(window.location.search);
-const category = url.get("category");
+const API_BASE_URL = "http://127.0.0.1:8000";
 
+// URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const categoryParam = urlParams.get("category");
 
-// =========================================================
-// PRODUCT DATA
-// =========================================================
+// DOM elements
+const categoryTitle = document.getElementById("category-title");
+const categoryDescription = document.getElementById("category-description");
+const productContainer = document.getElementById("product-container");
 
-const products = [
-
-    // =====================================================
-    // MAKEUP PRODUCTS
-    // =====================================================
-
-    {
-        id: "makeup1",
-        name: "Huda Beauty Medium Nude",
-        category: "makeup",
-        price: 2499,
-        image: "images/eyeshadow.jpeg",
-        description: "A versatile nude eyeshadow palette featuring rich matte and shimmer shades for creating everyday and glamorous eye looks."
-    },
-
-    {
-        id: "makeup2",
-        name: "SHEGLAM Skinfinite Hydrating Foundation",
-        category: "makeup",
-        price: 899,
-        image: "images/foundation.jpeg",
-        description: "A lightweight hydrating foundation designed to provide smooth, buildable coverage with a natural-looking finish."
-    },
-
-    {
-        id: "makeup3",
-        name: "MAC Lipstick",
-        category: "makeup",
-        price: 2200,
-        image: "images/lipstick.jpeg",
-        description: "A creamy lipstick with rich colour and a comfortable finish, designed to create a smooth and defined lip look."
-    },
-
-
-    // =====================================================
-    // SKINCARE PRODUCTS
-    // =====================================================
-
-    {
-        id: "skincare1",
-        name: "ANUA Heartleaf Pore Deep Cleansing Foam",
-        category: "skincare",
-        price: 899,
-        image: "images/facewash.jpeg",
-        description: "A gentle cleansing foam formulated with Heartleaf extract to help remove impurities and excess oil while leaving the skin feeling fresh and clean."
-    },
-
-    {
-        id: "skincare2",
-        name: "SKIN1004 Madagascar Centella Ampoule",
-        category: "skincare",
-        price: 1299,
-        image: "images/serum.jpeg",
-        description: "A lightweight soothing ampoule formulated with Madagascar Centella to help calm and hydrate the skin while supporting the skin barrier."
-    },
-
-    {
-        id: "skincare3",
-        name: "Laneige Water Sleeping Mask",
-        category: "skincare",
-        price: 1599,
-        image: "images/sleepingmask.jpeg",
-        description: "An overnight hydrating sleeping mask designed to replenish moisture and leave the skin feeling soft, refreshed and hydrated by morning."
-    },
-
-
-    // =====================================================
-    // HAIR PRODUCTS
-    // =====================================================
-
-    {
-        id: "hair1",
-        name: "Natural Dry Shampoo",
-        category: "hair",
-        price: 799,
-        image: "images/dryshampoo.jpeg",
-        description: "A refreshing dry shampoo designed to absorb excess oil and leave hair feeling clean, fresh and lightweight between washes."
-    },
-
-    {
-        id: "hair2",
-        name: "Nourishing Hair Oil",
-        category: "hair",
-        price: 999,
-        image: "images/hairoil.jpeg",
-        description: "A nourishing hair oil designed to moisturize the scalp and hair while helping improve softness, shine and overall hair health."
-    },
-
-    {
-        id: "hair3",
-        name: "Curl Crush Hair Cream",
-        category: "hair",
-        price: 899,
-        image: "images/curl.jpeg",
-        description: "A curl-defining cream designed to enhance natural curls, reduce frizz and leave hair soft, smooth and defined."
-    },
-
-
-    // =====================================================
-    // FRAGRANCE PRODUCTS
-    // =====================================================
-
-    {
-        id: "fragrance1",
-        name: "YSL Libre Berry Crush",
-        category: "fragrance",
-        price: 8999,
-        image: "images/ysl.jpeg",
-        description: "A luxurious berry-inspired fragrance with a rich fruity character and an elegant, long-lasting scent."
-    },
-
-    {
-        id: "fragrance2",
-        name: "TUKAN Vanilla Sky",
-        category: "fragrance",
-        price: 2499,
-        image: "images/tukan.jpeg",
-        description: "A warm and sophisticated vanilla fragrance with a smooth and comforting character designed for everyday wear."
-    },
-
-    {
-        id: "fragrance3",
-        name: "Chanel Coco Mademoiselle",
-        category: "fragrance",
-        price: 12999,
-        image: "images/chanel.jpeg",
-        description: "An elegant fragrance with a refined blend of citrus, floral and warm notes, creating a sophisticated signature scent."
-    },
-
-
-    // =====================================================
-    // BODY CARE PRODUCTS
-    // =====================================================
-
-    {
-        id: "bodycare1",
-        name: "Coba's Daughter Coffee Body Exfoliator",
-        category: "bodycare",
-        price: 799,
-        image: "images/bodyexfo.jpeg",
-        description: "A coffee-based body exfoliator designed to gently remove dead skin cells and leave the skin feeling smooth, soft and refreshed."
-    },
-
-    {
-        id: "bodycare2",
-        name: "Candleton Coconut Body Butter",
-        category: "bodycare",
-        price: 699,
-        image: "images/coconutwax.jpeg",
-        description: "A rich coconut body butter designed to nourish and moisturize dry skin while leaving it feeling soft and smooth."
-    },
-
-    {
-        id: "bodycare3",
-        name: "Glow Pastel Guava Foaming Body Wash",
-        category: "bodycare",
-        price: 599,
-        image: "images/bodywash.jpeg",
-        description: "A refreshing guava-scented foaming body wash designed to gently cleanse the skin while providing a soft and refreshing shower experience."
-    },
-
-
-    // =====================================================
-    // LIPS PRODUCTS
-    // =====================================================
-
-    {
-        id: "lips1",
-        name: "Gisou Honey Infused Lip Oil",
-        category: "lips",
-        price: 999,
-        image: "images/lipoil.jpeg",
-        description: "A glossy honey-infused lip oil designed to nourish, moisturize and give lips a smooth, hydrated shine."
-    },
-
-    {
-        id: "lips2",
-        name: "The Face Hub Lip Butter Balm",
-        category: "lips",
-        price: 599,
-        image: "images/lipbalm.jpeg",
-        description: "A rich lip butter balm designed to provide lasting moisture and keep lips soft, smooth and comfortable throughout the day."
-    },
-
-    {
-        id: "lips3",
-        name: "Rhode Peptide Lip Tint",
-        category: "lips",
-        price: 1499,
-        image: "images/liptint.jpeg",
-        description: "A hydrating peptide lip tint that combines comfortable moisture with a soft, glossy tint for an effortless everyday lip look."
-    }
-
-];
-
+// In-memory products for add-to-cart lookups
+let loadedProducts = [];
 
 // =========================================================
-// FIX IMAGE PATHS
+// NORMALIZE IMAGE PATHS
 // =========================================================
-
 function getProductImagePath(image) {
+    if (!image) return "";
+    const normalizedPath = String(image).replace(/\\/g, "/");
 
-    const normalizedPath = String(image || "").replace(/\\/g, "/");
-
-    // Keep external and data URLs unchanged.
+    // Keep external and data URLs unchanged
     if (/^(https?:|data:|blob:)/i.test(normalizedPath)) {
         return normalizedPath;
     }
 
-    // Handle paths such as images/eyeshadow.jpeg
+    // Convert images/foo.jpeg to ../images/foo.jpeg when served from html/
     if (normalizedPath.startsWith("images/")) {
         return "../" + normalizedPath;
     }
 
-    // Keep already-correct relative paths unchanged.
     if (normalizedPath.startsWith("../images/")) {
         return normalizedPath;
     }
 
-    return normalizedPath;
+    return "../images/" + normalizedPath;
 }
 
+// Escape HTML to prevent XSS
+function escapeHtml(text) {
+    if (text === null || text === undefined) return "";
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 // =========================================================
-// DISPLAY CATEGORY TITLE
+// UPDATE HEADER
 // =========================================================
-
-const categoryTitle = document.getElementById("category-title");
-const categoryDescription = document.getElementById("category-description");
-
-if (categoryTitle && categoryDescription) {
+function updateCategoryHeader(category) {
+    if (!categoryTitle || !categoryDescription) return;
 
     if (category) {
-
-        categoryTitle.textContent = category.toUpperCase();
-
+        const cleanName = category.trim();
+        categoryTitle.textContent = cleanName.toUpperCase();
         categoryDescription.textContent =
-            "Explore our " + category.toLowerCase() + " collection.";
-
+            `Explore our ${cleanName.toLowerCase()} collection.`;
     } else {
-
         categoryTitle.textContent = "ALL PRODUCTS";
-
         categoryDescription.textContent =
             "Discover everything from the Mila collection.";
-
     }
-
 }
 
+// =========================================================
+// FETCH AND RENDER PRODUCTS
+// =========================================================
+async function loadProducts() {
+    updateCategoryHeader(categoryParam);
+
+    if (!productContainer) return;
+
+    // Loading state
+    productContainer.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #666;">
+            <p style="font-size: 16px; letter-spacing: 1px;">Loading beauty essentials...</p>
+        </div>
+    `;
+
+    try {
+        const url = categoryParam
+            ? `${API_BASE_URL}/products/?category=${encodeURIComponent(categoryParam.toLowerCase())}`
+            : `${API_BASE_URL}/products/`;
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error ${response.status}`);
+        }
+
+        const data = await response.json();
+        loadedProducts = Array.isArray(data) ? data : [];
+
+        renderProducts(loadedProducts);
+    } catch (error) {
+        console.error("Error fetching products:", error);
+        productContainer.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                <h3 style="font-size: 20px; color: #211c1d; margin-bottom: 12px;">Unable to Load Products</h3>
+                <p style="color: #666; margin-bottom: 24px;">Please ensure the Mila backend server is running.</p>
+                <button onclick="loadProducts()" class="add-cart-btn" style="max-width: 200px; margin: 0 auto; display: block;">
+                    Try Again
+                </button>
+            </div>
+        `;
+    }
+}
 
 // =========================================================
-// FILTER PRODUCTS
+// RENDER PRODUCT CARDS
 // =========================================================
+function renderProducts(items) {
+    if (!productContainer) return;
+    productContainer.innerHTML = "";
 
-const filteredProducts = category
-    ? products.filter(function (product) {
-        return product.category === category.toLowerCase();
-    })
-    : products;
+    if (items.length === 0) {
+        productContainer.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #666;">
+                <h3 style="font-size: 20px; color: #211c1d; margin-bottom: 10px;">No Products Found</h3>
+                <p>We couldn't find any products in this category.</p>
+                <a href="products.html" style="display: inline-block; margin-top: 15px; color: #8bbbc9; text-decoration: underline;">
+                    View All Products
+                </a>
+            </div>
+        `;
+        return;
+    }
 
-
-// =========================================================
-// PRODUCT CONTAINER
-// =========================================================
-
-const productContainer = document.getElementById("product-container");
-
-
-// =========================================================
-// CREATE PRODUCT CARDS
-// =========================================================
-
-if (productContainer) {
-
-    filteredProducts.forEach(function (product) {
-
+    items.forEach(product => {
         const productCard = document.createElement("div");
-
         productCard.classList.add("product-card");
 
-        // Convert image paths to work from the html/ directory.
-        const imagePath = getProductImagePath(product.image);
+        const imagePath = getProductImagePath(product.image_url);
+        const isOutOfStock = Number(product.stock_quantity) <= 0;
+        const formattedPrice = Number(product.price).toLocaleString("en-IN");
 
         productCard.innerHTML = `
             <div class="product-image">
-
                 <img
                     src="${imagePath}"
-                    alt="${product.name}"
+                    alt="${escapeHtml(product.name)}"
                     loading="lazy"
+                    onerror="this.onerror=null; this.src='../images/logo.png';"
                 >
-
             </div>
 
             <div class="product-info">
-
                 <p class="product-category">
-                    ${product.category}
+                    ${escapeHtml(product.category || "")}
                 </p>
 
                 <h3>
-                    ${product.name}
+                    ${escapeHtml(product.name)}
                 </h3>
 
                 <p class="product-price">
-                    ₹${product.price}
+                    ₹${formattedPrice}
                 </p>
 
                 <button
+                    type="button"
                     class="add-cart-btn"
-                    data-id="${product.id}">
-
-                    Add to Cart
-
+                    data-id="${product.product_id}"
+                    ${isOutOfStock ? "disabled" : ""}
+                >
+                    ${isOutOfStock ? "OUT OF STOCK" : "Add to Cart"}
                 </button>
-
             </div>
         `;
 
-        productContainer.appendChild(productCard);
-
-
-        // =================================================
-        // CLICK PRODUCT CARD
-        // =================================================
-
+        // Card navigation (details page)
         productCard.addEventListener("click", function (event) {
-
-            // Do not open the details page when Add to Cart
-            // is clicked.
             if (event.target.closest(".add-cart-btn")) {
                 return;
             }
-
-            // Open the individual product details page.
-            window.location.href =
-                "product.html?id=" + encodeURIComponent(product.id);
-
+            window.location.href = `product.html?id=${encodeURIComponent(product.product_id)}`;
         });
 
-    });
+        // Add to Cart button
+        const addBtn = productCard.querySelector(".add-cart-btn");
+        if (addBtn && !isOutOfStock) {
+            addBtn.addEventListener("click", function (event) {
+                event.stopPropagation();
+                handleAddToCart(product, addBtn);
+            });
+        }
 
+        productContainer.appendChild(productCard);
+    });
 }
 
-
 // =========================================================
-// ADD TO CART
+// ADD TO CART FUNCTIONALITY
 // =========================================================
-
-document.querySelectorAll(".add-cart-btn").forEach(function (button) {
-
-    button.addEventListener("click", function (event) {
-
-        event.stopPropagation();
-
-        // Get product ID.
-        const productId = button.dataset.id;
-
-        // Find the selected product.
-        const product = products.find(function (item) {
-            return item.id === productId;
-        });
-
-        if (!product) {
-            return;
-        }
-
-
-        // =================================================
-        // GET EXISTING CART
-        // =================================================
-
-        let cart = [];
-
-        try {
-
-            cart = JSON.parse(localStorage.getItem("milaCart")) || [];
-
-            if (!Array.isArray(cart)) {
-                cart = [];
-            }
-
-        } catch (error) {
-
-            cart = [];
-
-        }
-
-
-        // =================================================
-        // CHECK IF PRODUCT ALREADY EXISTS
-        // =================================================
-
-        const existingProduct = cart.find(function (item) {
-            return item.id === product.id;
-        });
-
-
-        // =================================================
-        // UPDATE QUANTITY OR ADD PRODUCT
-        // =================================================
-
-        if (existingProduct) {
-
-            existingProduct.quantity =
-                (Number(existingProduct.quantity) || 0) + 1;
-
-        } else {
-
-            cart.push({
-
-                id: product.id,
-
-                name: product.name,
-
-                category: product.category,
-
-                price: product.price,
-
-                image: getProductImagePath(product.image),
-
-                quantity: 1
-
-            });
-
-        }
-
-
-        // =================================================
-        // SAVE CART
-        // =================================================
-
-        localStorage.setItem(
-            "milaCart",
-            JSON.stringify(cart)
-        );
-
-
-        // =================================================
-        // UPDATE NAVBAR COUNT
-        // =================================================
-
-        updateCartCount();
-
-
-        // =================================================
-        // BUTTON FEEDBACK
-        // =================================================
-
-        button.textContent = "Added ✓";
-
-        setTimeout(function () {
-
-            button.textContent = "Add to Cart";
-
-        }, 1000);
-
-    });
-
-});
-
-
-// =========================================================
-// UPDATE CART COUNT
-// =========================================================
-
-function updateCartCount() {
-
-    let cart = [];
-
-    try {
-
-        cart = JSON.parse(localStorage.getItem("milaCart")) || [];
-
-        if (!Array.isArray(cart)) {
-            cart = [];
-        }
-
-    } catch (error) {
-
-        cart = [];
-
+function handleAddToCart(product, buttonElement) {
+    const stock = Number(product.stock_quantity);
+    if (stock <= 0) {
+        alert("Sorry, this item is out of stock.");
+        return;
     }
 
+    let cart = [];
+    try {
+        cart = JSON.parse(localStorage.getItem("milaCart")) || [];
+        if (!Array.isArray(cart)) cart = [];
+    } catch (e) {
+        cart = [];
+    }
 
-    // Calculate total quantity of all products.
-    const totalQuantity = cart.reduce(function (total, item) {
+    // Match by numeric product ID
+    const existingIndex = cart.findIndex(item => String(item.id) === String(product.product_id));
 
-        return total + (Number(item.quantity) || 0);
+    if (existingIndex > -1) {
+        const currentQty = Number(cart[existingIndex].quantity) || 0;
+        if (currentQty + 1 > stock) {
+            alert(`Sorry, only ${stock} items are available in stock.`);
+            return;
+        }
+        cart[existingIndex].quantity = currentQty + 1;
+    } else {
+        cart.push({
+            id: product.product_id,
+            name: product.name,
+            category: product.category,
+            price: Number(product.price),
+            image: product.image_url,
+            quantity: 1
+        });
+    }
 
-    }, 0);
+    localStorage.setItem("milaCart", JSON.stringify(cart));
 
+    // Update cart badge across page
+    if (typeof updateCartCount === "function") {
+        updateCartCount();
+    } else {
+        window.dispatchEvent(new Event("milaCartUpdated"));
+    }
 
-    // Update every cart-count element on the page.
-    document.querySelectorAll(".cart-count").forEach(function (element) {
+    // Temporary button confirmation
+    buttonElement.textContent = "Added ✓";
+    buttonElement.style.backgroundColor = "#211c1d";
+    buttonElement.style.color = "#ffffff";
 
-        element.textContent = totalQuantity;
-
-    });
-
+    setTimeout(() => {
+        buttonElement.textContent = "Add to Cart";
+        buttonElement.style.backgroundColor = "";
+        buttonElement.style.color = "";
+    }, 1200);
 }
 
-
 // =========================================================
-// LOAD CART COUNT WHEN PAGE OPENS
+// INITIALIZATION
 // =========================================================
-
-updateCartCount();
+document.addEventListener("DOMContentLoaded", () => {
+    loadProducts();
+});

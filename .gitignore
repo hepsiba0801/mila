@@ -1,0 +1,19 @@
+# Environment variables and secrets
+.env
+*.env
+backend/.env
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# OS metadata
+.DS_Store
+Thumbs.db

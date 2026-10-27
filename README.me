@@ -103,3 +103,88 @@ Cart information is stored using:
 
 ```text
 milaCart
+```
+
+When authenticated, the local cart automatically synchronizes with the database persistent cart (`carts` and `cart_items` tables).
+
+---
+
+## 🔐 User Authentication & Account Management
+
+- **User Registration**: `/auth/signup` with name, unique email, minimum 8-character password, and terms agreement.
+- **Secure Password Hashing**: Passwords securely hashed using standard `bcrypt` with salt rounds.
+- **JWT Session Tokens**: Signed tokens using `pyjwt` with HMAC-SHA256, issued on login and registration.
+- **Account Dashboard**: `/profile.html` allows users to view/update profile fields, manage delivery addresses, and track order history.
+- **Protected Endpoints**: Sensitive user routes enforce bearer token validation.
+
+---
+
+## 💳 Checkout & Order Processing
+
+- **Stock Verification**: Atomic row-level database locking (`with_for_update`) to prevent race conditions and overselling.
+- **Authoritative Server Pricing**: Client-side prices are never trusted; order totals are recalculated strictly using database prices.
+- **Transactional Atomicity**: Database transactions ensure orders, order items, inventory decrements, and cart clearance commit together or roll back on error.
+- **Simulated Demonstration Payment**: Clearly labeled Cash on Delivery / Simulated checkout flow designed for academic presentation.
+
+---
+
+## 🛠️ Technology Stack
+
+- **Frontend**: HTML5, CSS3, JavaScript (Vanilla ES6+), jQuery 3.7.1, Bootstrap 5.3.3.
+- **Backend**: Python 3.14, FastAPI 0.146, Uvicorn 0.54, SQLAlchemy 2.1, PyMySQL 1.2, Pydantic v2.
+- **Database**: MySQL 8+ (`mila_db`) with relational integrity, foreign key cascades, and check constraints.
+- **Security**: Bcrypt password hashing, PyJWT authentication tokens, CORS origin restrictions.
+- **Testing**: Pytest with automated end-to-end API test suite.
+
+---
+
+## 🚀 How to Run the Project
+
+### 1. Start the Backend API
+
+From the project root:
+
+```bash
+cd backend
+.venv/bin/python run.py
+```
+
+Or using uvicorn directly:
+
+```bash
+cd backend
+.venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+```
+
+The API will be live at:
+- **API Base**: `http://127.0.0.1:8000`
+- **Interactive Documentation**: `http://127.0.0.1:8000/docs`
+- **Database Health**: `http://127.0.0.1:8000/health/db`
+
+### 2. Start the Frontend
+
+In a separate terminal, serve the frontend on port 5500:
+
+```bash
+cd ~/Downloads/full_stack_lab/assignment2
+python3 -m http.server 5500
+```
+
+Open in your browser:
+- `http://127.0.0.1:5500/html/index.html` (Home)
+- `http://127.0.0.1:5500/html/products.html` (Shop)
+- `http://127.0.0.1:5500/html/cart.html` (Cart & Checkout)
+- `http://127.0.0.1:5500/html/signin.html` (Sign In)
+- `http://127.0.0.1:5500/html/signup.html` (Create Account)
+- `http://127.0.0.1:5500/html/profile.html` (Account & Orders)
+
+---
+
+## 🧪 Running Automated Tests
+
+Run the test suite verifying all 11 core functional modules:
+
+```bash
+PYTHONPATH=backend backend/.venv/bin/pytest backend/tests/test_api.py -v
+```
+

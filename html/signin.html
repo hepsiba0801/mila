@@ -188,13 +188,22 @@
     </main>
 
 
-    <!-- CART COUNT -->
+    <!-- CART COUNT & AUTH NAVIGATION -->
     <script src="../js/cart-count.js"></script>
+    <script src="../js/auth-nav.js"></script>
 
 
     <!-- SIGN IN INTERACTIONS -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+
+            // Check if already logged in
+            if (localStorage.getItem("milaAuthToken")) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirect = urlParams.get("redirect") || "profile.html";
+                window.location.href = redirect;
+                return;
+            }
 
             const signinForm = document.getElementById("signinForm");
             const passwordInput = document.getElementById("password");
@@ -245,45 +254,43 @@
                 signinButton.textContent = "Signing in...";
 
                 try {
+                    const response = await fetch("http://127.0.0.1:8000/auth/signin", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
 
-                    /*
-                     * BACKEND INTEGRATION
-                     *
-                     * Connect your authentication API here when
-                     * the backend is ready.
-                     *
-                     * Example:
-                     *
-                     * const response = await fetch(
-                     *     "http://127.0.0.1:8000/auth/signin",
-                     *     {
-                     *         method: "POST",
-                     *         headers: {
-                     *             "Content-Type": "application/json"
-                     *         },
-                     *         body: JSON.stringify({ email, password })
-                     *     }
-                     * );
-                     *
-                     * const data = await response.json();
-                     *
-                     * if (!response.ok) {
-                     *     throw new Error(data.detail || "Sign in failed.");
-                     * }
-                     *
-                     * Handle the authenticated session securely
-                     * using the backend's chosen authentication method.
-                     */
+                    const data = await response.json();
 
-                    signinMessage.textContent =
-                        "The sign-in service is not connected yet. Please try again when authentication is available.";
+                    if (!response.ok) {
+                        throw new Error(data.detail || "Sign in failed.");
+                    }
 
-                    signinMessage.classList.add("info");
+                    // Save session securely in localStorage
+                    localStorage.setItem("milaAuthToken", data.access_token);
+                    localStorage.setItem("milaUser", JSON.stringify(data.user));
+
+                    // Synchronize local cart with backend
+                    if (typeof syncLocalCartWithServer === "function") {
+                        await syncLocalCartWithServer();
+                    }
+
+                    signinMessage.textContent = `Welcome back, ${data.user.full_name}! Redirecting...`;
+                    signinMessage.classList.add("success");
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const redirectUrl = urlParams.get("redirect") || "products.html";
+
+                    setTimeout(() => {
+                        window.location.href = redirectUrl;
+                    }, 800);
 
                 } catch (error) {
 
                     signinMessage.textContent =
-                        error.message || "Something went wrong. Please try again.";
+                        error.message || "Unable to sign in. Please check your credentials.";
 
                     signinMessage.classList.add("error");
 

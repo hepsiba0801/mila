@@ -171,5 +171,112 @@
 
     </main>
 
+    <!-- CART COUNT & AUTH NAVIGATION -->
+    <script src="../js/cart-count.js"></script>
+    <script src="../js/auth-nav.js"></script>
+
+    <!-- SIGN UP INTERACTIONS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            if (localStorage.getItem("milaAuthToken")) {
+                window.location.href = "profile.html";
+                return;
+            }
+
+            const signupForm = document.getElementById("signupForm");
+            const fullNameInput = document.getElementById("fullName");
+            const emailInput = document.getElementById("email");
+            const passwordInput = document.getElementById("password");
+            const confirmPasswordInput = document.getElementById("confirmPassword");
+            const agreeTermsInput = document.getElementById("agreeTerms");
+            const signupMessage = document.getElementById("signupMessage");
+            const submitBtn = signupForm.querySelector(".auth-button");
+
+            signupForm.addEventListener("submit", async function (event) {
+                event.preventDefault();
+
+                signupMessage.textContent = "";
+                signupMessage.className = "";
+
+                const fullName = fullNameInput.value.trim();
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+                const termsAccepted = agreeTermsInput.checked;
+
+                if (!fullName || !email || !password || !confirmPassword) {
+                    signupMessage.textContent = "Please fill in all required fields.";
+                    signupMessage.className = "error";
+                    return;
+                }
+
+                if (password.length < 8) {
+                    signupMessage.textContent = "Password must be at least 8 characters long.";
+                    signupMessage.className = "error";
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    signupMessage.textContent = "Passwords do not match.";
+                    signupMessage.className = "error";
+                    return;
+                }
+
+                if (!termsAccepted) {
+                    signupMessage.textContent = "Please accept the Terms and Privacy Policy.";
+                    signupMessage.className = "error";
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Creating Account...";
+
+                try {
+                    const response = await fetch("http://127.0.0.1:8000/auth/signup", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            full_name: fullName,
+                            email: email,
+                            password: password,
+                            terms_accepted: termsAccepted
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.detail || "Unable to create account.");
+                    }
+
+                    // Save session in localStorage
+                    localStorage.setItem("milaAuthToken", data.access_token);
+                    localStorage.setItem("milaUser", JSON.stringify(data.user));
+
+                    // Synchronize local cart with backend
+                    if (typeof syncLocalCartWithServer === "function") {
+                        await syncLocalCartWithServer();
+                    }
+
+                    signupMessage.textContent = "Account created successfully! Welcome to Mila.";
+                    signupMessage.className = "success";
+
+                    setTimeout(() => {
+                        window.location.href = "products.html";
+                    }, 1000);
+
+                } catch (error) {
+                    signupMessage.textContent = error.message || "Sign up failed. Please try again.";
+                    signupMessage.className = "error";
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Create Account";
+                }
+            });
+        });
+    </script>
 </body>
 </html>

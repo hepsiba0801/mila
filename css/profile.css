@@ -1,0 +1,217 @@
+/* ==========================================
+   MILA - USER PROFILE & ORDERS STYLING
+   ========================================== */
+
+body {
+    margin: 0;
+    background-color: #f8f5f0;
+    font-family: Arial, sans-serif;
+    color: #211c1d;
+}
+
+.profile-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 120px 20px 60px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e0d9;
+    padding-bottom: 25px;
+    margin-bottom: 35px;
+}
+
+.profile-header h1 {
+    font-size: 32px;
+    font-weight: 500;
+    margin: 0 0 5px 0;
+    letter-spacing: -0.5px;
+}
+
+.profile-header p {
+    color: #777;
+    margin: 0;
+    font-size: 14px;
+}
+
+.btn-signout {
+    padding: 10px 20px;
+    border: 1px solid #211c1d;
+    background: transparent;
+    color: #211c1d;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-signout:hover {
+    background: #211c1d;
+    color: #fff;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.profile-card {
+    background: #ffffff;
+    border: 1px solid #eee7de;
+    border-radius: 4px;
+    padding: 28px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.profile-card h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f0ebe4;
+    padding-bottom: 12px;
+    color: #211c1d;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 14px;
+    border: 1px solid #dcd5cc;
+    background: #faf8f5;
+    font-size: 14px;
+    color: #211c1d;
+    border-radius: 3px;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #8bbbc9;
+    background: #fff;
+}
+
+.form-group input[readonly] {
+    background: #f0ece7;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.btn-save {
+    padding: 12px 24px;
+    background: #211c1d;
+    color: #fff;
+    border: none;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.btn-save:hover {
+    background: #444;
+}
+
+.card-feedback {
+    font-size: 13px;
+    margin-top: 12px;
+    min-height: 18px;
+}
+
+.card-feedback.success {
+    color: #27845c;
+}
+
+.card-feedback.error {
+    color: #c0394b;
+}
+
+/* Orders Section */
+.orders-section {
+    background: #ffffff;
+    border: 1px solid #eee7de;
+    border-radius: 4px;
+    padding: 28px;
+    margin-top: 20px;
+}
+
+.orders-section h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f0ebe4;
+    padding-bottom: 12px;
+}
+
+.order-item-card {
+    border: 1px solid #f0ece7;
+    padding: 18px;
+    margin-bottom: 16px;
+    border-radius: 3px;
+    background: #faf8f5;
+}
+
+.order-item-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.order-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    border-radius: 12px;
+    background: #e6f3f7;
+    color: #4a7587;
+    font-weight: bold;
+}
+
+.order-products {
+    margin: 12px 0;
+    padding-left: 20px;
+    color: #555;
+    font-size: 13px;
+}
+
+.order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee7de;
+    padding-top: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+}
